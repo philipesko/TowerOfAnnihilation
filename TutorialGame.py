@@ -1,5 +1,5 @@
 import pygame 
-from pygame import *
+from pygame.locals import *
 
 class App:
     def __init__(self):
