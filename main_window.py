@@ -1,5 +1,6 @@
 import pygame, os.path
 pygame.init()
+pygame.mixer.quit()
 
 # Size of a window in px
 size = width, height = 1024, 768
