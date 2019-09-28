@@ -4,7 +4,7 @@ import pygame
 class PyGView (object):
 
 
-    def __init__(self, wight=640, height=400, fps=30):
+    def __init__(self, wight=640, height=400, fps=60):
         """Initialize pygame, window, background, font,..."""
         pygame.init()
         pygame.display.set_caption("Press ESC for quit")
@@ -40,6 +40,7 @@ class PyGView (object):
         running_flag = True
         while running_flag:
             for event in pygame.event.get():
+                print(event)
                 if event.type == pygame.QUIT:
                     running_flag = False
                 elif event.type == pygame.KEYDOWN:
@@ -48,7 +49,7 @@ class PyGView (object):
 
             milliseconds = self.clock.tick(self.fps)
             self.playtime +=milliseconds / 1000.0
-            self.draw_text(f"FPS: {self.clock.get_fps()}     {self.playtime}")
+            self.draw_text(f"FPS: {int(self.clock.get_fps())}     Play time: {int(self.playtime)}")
 
             pygame.display.flip()
             self.screen.blit(self.background, (0, 0))
@@ -83,4 +84,4 @@ class Ball(object):
         background.blit(self.surface, ( self.x, self.y))
 
 if __name__ == '__main__':
-    PyGView(640, 400).run()
+    PyGView(1200, 740).run()
