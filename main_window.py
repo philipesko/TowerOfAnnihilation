@@ -1,5 +1,7 @@
 import pygame, os.path
 pygame.init()
+# Known bug - high CPU usage
+pygame.mixer.quit()
 
 # Size of a window in px
 size = width, height = 1024, 768
