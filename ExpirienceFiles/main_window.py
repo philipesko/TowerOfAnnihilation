@@ -1,4 +1,6 @@
 import pygame, os.path
+import pkg_resources
+
 pygame.init()
 # Known bug - high CPU usage
 pygame.mixer.quit()

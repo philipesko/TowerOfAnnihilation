@@ -1,4 +1,6 @@
-import pygame 
+import pygame
+import os.path
+
 from pygame.locals import *
 
 class App:
@@ -32,7 +34,6 @@ class App:
             for event in pygame.event.get():
                 self.on_event(event)
             self.on_loop()
-            self.on_render()
         self.on_cleanup()
 
 
