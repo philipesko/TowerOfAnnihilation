@@ -1,6 +1,6 @@
 import pygame
 
-import TOA.MainWindow as MW
+import MainWindow as MW
 
 
 class MainLoop:
