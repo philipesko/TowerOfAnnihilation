@@ -8,6 +8,8 @@ class MainLoop:
     def __init__(self):
         self._running = True
         self.FPS = pygame.time.Clock()
+        # Known bug - high CPU usage
+        pygame.mixer.quit()
         
     def on_cleanup(self):
         #Clear all. Need use before exit from game
@@ -29,7 +31,6 @@ class MainLoop:
                     quit()
                 self.FPS.tick(60)
 
-                
             pygame.display.update()
             
 

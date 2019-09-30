@@ -34,13 +34,14 @@ class CreateMainWindow:
         icon = pygame.transform.scale(icon, (32, 32))
 
         # Setting a window caption and an icon
-        set_capture = pygame.display.set_caption(self._project_name)
-        set_capture = pygame.display.set_icon(icon)
+        pygame.display.set_caption(self._project_name)
+        pygame.display.set_icon(icon)
 
         # Positioning background and pointer indicator for main menu
         self.surface.blit(self.main_menu_background, (0, 0))
         self.surface.blit(self.main_menu_greets, self.main_menu_greets_position)
         self.show_mouse_position_with_px()
+        self.main_menu_buttons()
 
 
     def show_mouse_position_with_px(self):
@@ -48,5 +49,28 @@ class CreateMainWindow:
         self.positiontext(f'Mouse position {pygame.mouse.get_pos()}', (770, 20))
 
 
-    def main_menu_buttons(self, state):
-        self.
+    # def center_by_x(self, x, y, obj_start):
+    #     self.x = 0.5 * self.size[0]
+    #     self.y = 0.5 * self.size[1]
+    #     self.obj_start = self.get_rect()
+    #     self.obj_start = self.obj_start[2]/2
+    #     self.obj_start = self.x - self.obj_start
+
+
+
+    def main_menu_buttons(self):
+        # Start button
+        self.start_button = pygame.image.load(os.path.join(self._resource_path, 'buttons', 'start.png'))
+        self.start_button_position = self.start_button.get_rect()
+        self.start_button_position = self.start_button_position[2]/2
+        self.start_button = self.surface.blit(self.start_button, 
+        ((0.5 * self.size[0] - self.start_button_position), (0.45 * self.size[1])))
+
+        # Exit button
+        self.start_button = pygame.image.load(os.path.join(self._resource_path, 'buttons', 'exit.png'))
+        self.start_button_position = self.start_button.get_rect()
+        self.start_button_position = self.start_button_position[2]/2
+        self.start_button = self.surface.blit(self.start_button, 
+        ((0.5 * self.size[0] - self.start_button_position), (0.55 * self.size[1])))
+
+    
