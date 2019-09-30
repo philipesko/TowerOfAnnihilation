@@ -7,7 +7,7 @@ class MainLoop:
 
     def __init__(self):
         self._running = True
-
+        self.FPS = pygame.time.Clock()
     def on_cleanup(self):
         #Clear all. Need use before exit from game
         pygame.quit()
@@ -17,15 +17,22 @@ class MainLoop:
         while self._running:
 
             pygame.init()
-            create_main_window = MW.CreateMainWindows()
-            create_main_window.create()
+            #Create new Main Window
+            create_main_window = MW.CreateMainWindow()
+            cmw = create_main_window.create()
+
             for event in pygame.event.get():
                 """"Quit from game if player push button ESC"""
                 if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                     self._running = False
                     self.on_cleanup()
+                if event.type == pygame.MOUSEMOTION:
+                    #Future for Main Window: show position mouse in px
+                    create_main_window.show_mouse_position_with_px()
 
+                self.FPS.tick(60)
                 pygame.display.update()
+
 
 
 if __name__ == "__main__":
