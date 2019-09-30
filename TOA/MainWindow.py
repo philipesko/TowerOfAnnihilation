@@ -21,7 +21,7 @@ class CreateMainWindow:
         self.main_menu_background = pygame.image.load(os.path.join(self._resource_path, 'main.png'))
 
 
-    def positiontext(self, text, position,):
+    def positiontext(self, text, position):
         # draw text with team fonts on active window
         text_position = self.main_menu_greets_fonts.render(text, 2, (207, 204, 127))
         self.surface.blit(text_position, position)
@@ -42,9 +42,11 @@ class CreateMainWindow:
         self.surface.blit(self.main_menu_greets, self.main_menu_greets_position)
         self.show_mouse_position_with_px()
 
+
     def show_mouse_position_with_px(self):
         self.main_menu_greets_fonts = pygame.font.Font(os.path.join(self._resource_path, 'font_forever.ttf'), 10)
         self.positiontext(f'Mouse position {pygame.mouse.get_pos()}', (770, 20))
 
-    # def main_menu_buttons(self):
-        # self.
+
+    def main_menu_buttons(self, state):
+        self.
