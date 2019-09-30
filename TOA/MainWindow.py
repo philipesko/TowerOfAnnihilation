@@ -39,6 +39,7 @@ class CreateMainWindow:
         set_capture = pygame.display.set_icon(icon)
         self.surface.blit(self.main_menu_background, (0, 0))
         self.surface.blit(self.main_menu_greets, self.text_pos)
+        self.show_mouse_position_with_px()
 
     def show_mouse_position_with_px(self):
         self.main_menu_greets_fonts = pygame.font.Font(os.path.join(self._resource_path, 'font_forever.ttf'), 10)

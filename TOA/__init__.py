@@ -26,9 +26,6 @@ class MainLoop:
                 if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                     self._running = False
                     self.on_cleanup()
-                if event.type == pygame.MOUSEMOTION:
-                    #Future for Main Window: show position mouse in px
-                    create_main_window.show_mouse_position_with_px()
 
                 self.FPS.tick(60)
                 pygame.display.update()
