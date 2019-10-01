@@ -52,8 +52,8 @@ class CreateMainWindow:
 
 
     # def center_by_x(self, x, y, obj_start):
-        self.x = 0.5 * self.size[0]
-        self.y = 0.5 * self.size[1]
+        # self.x = 0.5 * self.size[0]
+        # self.y = 0.5 * self.size[1]
     #     self.obj_start = self.get_rect()
     #     self.obj_start = self.obj_start[2]/2
     #     self.obj_start = self.x - self.obj_start
