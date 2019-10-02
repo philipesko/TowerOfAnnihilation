@@ -10,7 +10,7 @@ class CreateMainWindow:
         self._resource_path = os.path.join(self._current_path, 'resources')
         self._project_name = 'Tower of Annihilation'
         self._button_name = ['start.png', 'exit.png']
-        self._buttons_start_pos = 0.45
+        self._buttons_start_pos = 0.35
 
         # Size of a window in px
         self.size = width, height
@@ -51,33 +51,19 @@ class CreateMainWindow:
         self.positiontext(f'Mouse position {pygame.mouse.get_pos()}', (770, 20))
 
 
-    # def center_by_x(self, x, y, obj_start):
-        # self.x = 0.5 * self.size[0]
-        # self.y = 0.5 * self.size[1]
-    #     self.obj_start = self.get_rect()
-    #     self.obj_start = self.obj_start[2]/2
-    #     self.obj_start = self.x - self.obj_start
-
-
     def main_menu_buttons(self):
         # Start button
-        start_butt = self.draw_button(self._button_name[0])
-        # self.start_button = self.surface.blit(self.start_button, 
-        # ((0.5 * self.size[0] - self.start_button_position), (0.45 * self.size[1])))
-
-
+        self.draw_button(self._button_name[0], 0.45)
         # Exit button
-        exit_butt = self.draw_button(self._button_name[1])
-        # self.start_button = self.surface.blit(self.start_button, 
-        # ((0.5 * self.size[0] - self.start_button_position), (0.55 * self.size[1])))
-    
+        self.draw_button(self._button_name[1], 0.55)
+   
 
-    def draw_button(self, button_name):
+    def draw_button(self, button_name, y):
         x = 0.5 * self.size[0]
-        y = 0.45 * self.size[1]
-        self.start_button = pygame.image.load(os.path.join(self._resource_path, 'buttons', button_name))
-        self.start_button_position = self.start_button.get_rect()
-        self.start_button_position = self.start_button_position[2]/2
-        self.start_button = self.surface.blit(self.start_button, 
-        ((x - self.start_button_position), y)
-        return y
+        y = y * self.size[1]
+        self.menu_button = pygame.image.load(os.path.join(self._resource_path, 'buttons', button_name))
+        self.menu_button_position = self.menu_button.get_rect()
+        self.menu_button_position = self.menu_button_position[2]/2
+        self.menu_button = self.surface.blit(self.menu_button, 
+        ((x - self.menu_button_position), y))
+        # return y
