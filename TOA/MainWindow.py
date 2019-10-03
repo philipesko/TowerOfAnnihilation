@@ -9,20 +9,21 @@ class CreateMainWindow:
         self._current_path = os.path.dirname(__file__)  # Where your .py file is located
         self._resource_path = os.path.join(self._current_path, 'resources')
         self._project_name = 'Tower of Annihilation'
-        self._path_dir_resources = 'resources'
+        self._button_name = ['start.png', 'exit.png']
+        self._buttons_start_pos = 0.35
 
         # Size of a window in px
         self.size = width, height
         self.surface = pygame.display.set_mode(self.size)
 
-        # Load Fonts and set position main text
+        # Load Fonts, background image and position main text
         self.main_menu_greets_fonts = pygame.font.Font(os.path.join(self._resource_path, 'font_forever.ttf'), 28)
         self.main_menu_greets = self.main_menu_greets_fonts.render(f'Welcome to the {self._project_name}', 1, (207, 204, 127))
-        self.text_pos = self.main_menu_greets.get_rect()
+        self.main_menu_greets_position = self.surface.blit(self.main_menu_greets, (30, 260))
         self.main_menu_background = pygame.image.load(os.path.join(self._resource_path, 'main.png'))
-        self.text_pos.center = self.main_menu_background.get_rect().center
 
-    def positiontext(self, text, position,):
+
+    def positiontext(self, text, position):
         # draw text with team fonts on active window
         text_position = self.main_menu_greets_fonts.render(text, 2, (207, 204, 127))
         self.surface.blit(text_position, position)
@@ -35,14 +36,34 @@ class CreateMainWindow:
         icon = pygame.transform.scale(icon, (32, 32))
 
         # Setting a window caption and an icon
-        set_capture = pygame.display.set_caption(self._project_name)
-        set_capture = pygame.display.set_icon(icon)
+        pygame.display.set_caption(self._project_name)
+        pygame.display.set_icon(icon)
+
+        # Positioning background and pointer indicator for main menu
         self.surface.blit(self.main_menu_background, (0, 0))
-        self.surface.blit(self.main_menu_greets, self.text_pos)
+        self.surface.blit(self.main_menu_greets, self.main_menu_greets_position)
         self.show_mouse_position_with_px()
+        self.main_menu_buttons()
+
 
     def show_mouse_position_with_px(self):
         self.main_menu_greets_fonts = pygame.font.Font(os.path.join(self._resource_path, 'font_forever.ttf'), 10)
         self.positiontext(f'Mouse position {pygame.mouse.get_pos()}', (770, 20))
 
 
+    def main_menu_buttons(self):
+        # Start button
+        self.draw_button(self._button_name[0], 0.45)
+        # Exit button
+        self.draw_button(self._button_name[1], 0.55)
+   
+
+    def draw_button(self, button_name, y):
+        x = 0.5 * self.size[0]
+        y = y * self.size[1]
+        self.menu_button = pygame.image.load(os.path.join(self._resource_path, 'buttons', button_name))
+        self.menu_button_position = self.menu_button.get_rect()
+        self.menu_button_position = self.menu_button_position[2]/2
+        self.menu_button = self.surface.blit(self.menu_button, 
+        ((x - self.menu_button_position), y))
+        # return y
