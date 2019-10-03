@@ -9,8 +9,8 @@ class CreateMainWindow:
         self._current_path = os.path.dirname(__file__)  # Where your .py file is located
         self._resource_path = os.path.join(self._current_path, 'resources')
         self._project_name = 'Tower of Annihilation'
-        self._button_name = ['start.png', 'exit.png']
-        self._buttons_start_pos = 0.35
+        self._button_name = ['start.png', 'exit.png', 'start_pressed.png', 'exit_pressed.png', 'start_light.png', 'exit_light.png']
+        # self._buttons_start_pos = 0.35
 
         # Size of a window in px
         self.size = width, height
@@ -49,21 +49,35 @@ class CreateMainWindow:
     def show_mouse_position_with_px(self):
         self.main_menu_greets_fonts = pygame.font.Font(os.path.join(self._resource_path, 'font_forever.ttf'), 10)
         self.positiontext(f'Mouse position {pygame.mouse.get_pos()}', (770, 20))
-
+        self.mouse = pygame.mouse.get_pos()
+        self.click = pygame.mouse.get_pressed()
+        
 
     def main_menu_buttons(self):
-        # Start button
-        self.draw_button(self._button_name[0], 0.45)
-        # Exit button
-        self.draw_button(self._button_name[1], 0.55)
-   
+
+        if 427+170 > self.mouse[0] > 427 and 345+56 > self.mouse[1] > 345:
+            self.draw_button(self._button_name[4], 0.45)
+            self.draw_button(self._button_name[1], 0.55)
+        elif 427+170 > self.mouse[0] > 427 and 422+56 > self.mouse[1] > 422:
+            self.draw_button(self._button_name[0], 0.45)
+            self.draw_button(self._button_name[5], 0.55)
+            if self.click[0] == 1:
+                pygame.quit()
+                quit()
+            # Почему-то не срабатывает у меня с первого раза =((
+        else:
+            self.draw_button(self._button_name[0], 0.45)
+            # start_coord = self.menu_button
+            self.draw_button(self._button_name[1], 0.55)
+            # exit_coord = self.menu_button
 
     def draw_button(self, button_name, y):
         x = 0.5 * self.size[0]
         y = y * self.size[1]
         self.menu_button = pygame.image.load(os.path.join(self._resource_path, 'buttons', button_name))
-        self.menu_button_position = self.menu_button.get_rect()
-        self.menu_button_position = self.menu_button_position[2]/2
+        self.menu_button_size = self.menu_button.get_rect()
+        self.menu_button_offsetx = self.menu_button_size[2]/2
         self.menu_button = self.surface.blit(self.menu_button, 
-        ((x - self.menu_button_position), y))
-        # return y
+        ((x - self.menu_button_offsetx), y))
+        return self.menu_button
+
