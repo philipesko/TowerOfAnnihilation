@@ -29,7 +29,8 @@ class MainLoop:
                     self._running = False
                     self.on_cleanup()
                     quit()
-                self.FPS.tick(60)
+                
+                # self.FPS.tick(60)
 
             pygame.display.update()
             
