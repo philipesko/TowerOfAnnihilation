@@ -1,6 +1,6 @@
 import pygame
 
-import MainWindow as MW
+from MainWindow import CreateMainWindow
 
 
 class MainLoop:
@@ -11,9 +11,12 @@ class MainLoop:
         # Known bug - high CPU usage
         pygame.mixer.quit()
         
+
     def on_cleanup(self):
         #Clear all. Need use before exit from game
         pygame.quit()
+        quit()
+
 
     def run(self):
         """Main loop"""
@@ -21,15 +24,17 @@ class MainLoop:
 
             pygame.init()
             #Create new Main Window
-            create_main_window = MW.CreateMainWindow().create()
-
+            # create_main_window = MW.CreateMainWindow().create()
+            CMW = CreateMainWindow(self._running)
+            create_main_window = CMW.create()
+            
             for event in pygame.event.get():
-                """Quit from game if player push button ESC"""
+                """Quit from game if player pushes button ESC"""
                 if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                     self._running = False
                     self.on_cleanup()
-                    quit()
-                
+                    
+  
                 # self.FPS.tick(60)
 
             pygame.display.update()
