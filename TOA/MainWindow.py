@@ -5,12 +5,12 @@ import os.path
 
 class CreateMainWindow:
 
-    def __init__(self, isrunning, width=1024, height=768):
+    def __init__(self, width=1024, height=768):
         self._current_path = os.path.dirname(__file__)  # Where your .py file is located
         self._resource_path = os.path.join(self._current_path, 'resources')
         self._project_name = 'Tower of Annihilation'
         self._button_name = ['start.png', 'exit.png', 'start_pressed.png', 'exit_pressed.png', 'start_light.png', 'exit_light.png']
-        self._isrunning = isrunning
+        self._isrunning = True
         # self._buttons_start_pos = 0.35
 
         # Size of a window in px
@@ -73,10 +73,14 @@ class CreateMainWindow:
 
         if 427+170 > self.mouse[0] > 427 and 345+56 > self.mouse[1] > 345:
             self.draw_button(self._button_name[4], 0.45)
+            pygame.display.update()
             self.draw_button(self._button_name[1], 0.55)
+            pygame.display.update()
         elif 427+170 > self.mouse[0] > 427 and 422+56 > self.mouse[1] > 422:
             self.draw_button(self._button_name[0], 0.45)
+            pygame.display.update()
             self.draw_button(self._button_name[5], 0.55)
+            pygame.display.update()
             if self.click[0] == 1:
                 self._isrunning = False
                 
