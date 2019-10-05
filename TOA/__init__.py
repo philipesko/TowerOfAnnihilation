@@ -25,10 +25,13 @@ class MainLoop:
             pygame.init()
             #Create new Main Window
             # create_main_window = MW.CreateMainWindow().create()
-            CMW = CreateMainWindow(self._running)
+            CMW = CreateMainWindow()
             create_main_window = CMW.create()
+            if CMW._isrunning == False:
+                self._running = False
             
             for event in pygame.event.get():
+                # print(event)
                 """Quit from game if player pushes button ESC"""
                 if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                     self._running = False
