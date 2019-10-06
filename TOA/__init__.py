@@ -1,7 +1,7 @@
 import pygame
 
-from MainWindow import CreateMainWindow
-
+import MainWindow 
+from CheckPos import CheckMousePos
 
 class MainLoop:
 
@@ -10,7 +10,7 @@ class MainLoop:
         self.FPS = pygame.time.Clock()
         # Known bug - high CPU usage
         pygame.mixer.quit()
-        
+
 
     def on_cleanup(self):
         #Clear all. Need use before exit from game
@@ -21,22 +21,25 @@ class MainLoop:
     def run(self):
         """Main loop"""
         while self._running:
-
             pygame.init()
+
             #Create new Main Window
-            # create_main_window = MW.CreateMainWindow().create()
-            CMW = CreateMainWindow()
+            CMW = MainWindow.CreateMainWindow()
             create_main_window = CMW.create()
+            click_event = CheckMousePos()
+
             if CMW._isrunning == False:
                 self._running = False
             
             for event in pygame.event.get():
-                # print(event)
                 """Quit from game if player pushes button ESC"""
                 if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                     self._running = False
                     self.on_cleanup()
-                    
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                    coord = pygame.mouse.get_pos()
+                    # print(coord)
+                    click_event.mouse_coordinates(coord)
   
                 # self.FPS.tick(60)
 

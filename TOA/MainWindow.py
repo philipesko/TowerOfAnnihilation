@@ -5,6 +5,8 @@ import os.path
 
 class CreateMainWindow:
 
+    test = None
+
     def __init__(self, width=1024, height=768):
         
         self._current_path = os.path.dirname(__file__)  # Where your .py file is located
@@ -70,7 +72,6 @@ class CreateMainWindow:
         start_coord = self.menu_button
         self.draw_button(self._button_name[1], 0.55)
         exit_coord = self.menu_button
-
         if 427+170 > self.mouse[0] > 427 and 345+56 > self.mouse[1] > 345:
             self.draw_button(self._button_name[4], 0.45)
             self.draw_button(self._button_name[1], 0.55)
@@ -94,3 +95,5 @@ class CreateMainWindow:
         ((x - self.menu_button_offsetx), y))
         return self.menu_button
 
+    # def load_image(self, image):
+        
