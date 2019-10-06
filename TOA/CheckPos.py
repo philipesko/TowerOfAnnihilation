@@ -4,7 +4,7 @@ class CheckMousePos:
 
     def mouse_coordinates(self, coordinates):
 
-        # self.mouse_coordinates = coordinates
+        self.mouse_coordinates = coordinates
         print(coordinates)
 
 
