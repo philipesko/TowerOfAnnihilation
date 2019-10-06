@@ -6,10 +6,12 @@ import os.path
 class CreateMainWindow:
 
     def __init__(self, width=1024, height=768):
+        
         self._current_path = os.path.dirname(__file__)  # Where your .py file is located
         self._resource_path = os.path.join(self._current_path, 'resources')
         self._project_name = 'Tower of Annihilation'
         self._button_name = ['start.png', 'exit.png', 'start_pressed.png', 'exit_pressed.png', 'start_light.png', 'exit_light.png']
+        self._isrunning = True
         # self._buttons_start_pos = 0.35
 
         # Size of a window in px
@@ -24,13 +26,18 @@ class CreateMainWindow:
 
 
     def positiontext(self, text, position):
+        '''
+        Positioning Greetings text and drawing it
+        '''
         # draw text with team fonts on active window
         text_position = self.main_menu_greets_fonts.render(text, 2, (207, 204, 127))
         self.surface.blit(text_position, position)
 
 
     def create(self):
-
+        '''
+        Creating Main window, with backround, caption, icon, buttons, etc
+        '''
         # Loading and formatting windows icon to 32x32
         icon = pygame.image.load(os.path.join(self._resource_path, 'tower-defense-levels-ship.png'))
         icon = pygame.transform.scale(icon, (32, 32))
@@ -47,31 +54,43 @@ class CreateMainWindow:
 
 
     def show_mouse_position_with_px(self):
+        '''
+        Drawing mouse position/click tracker
+        '''
         self.main_menu_greets_fonts = pygame.font.Font(os.path.join(self._resource_path, 'font_forever.ttf'), 10)
         self.positiontext(f'Mouse position {pygame.mouse.get_pos()}', (770, 20))
         self.mouse = pygame.mouse.get_pos()
-        self.click = pygame.mouse.get_pressed()
         
 
     def main_menu_buttons(self):
+        '''
+        Launching button drawing func and tracking mouse over action
+        '''
+        self.draw_button(self._button_name[0], 0.45)
+        start_coord = self.menu_button
+        self.draw_button(self._button_name[1], 0.55)
+        exit_coord = self.menu_button
+
 
         if 427+170 > self.mouse[0] > 427 and 345+56 > self.mouse[1] > 345:
+            pygame.mouse.set_cursor(*pygame.cursors.diamond)
             self.draw_button(self._button_name[4], 0.45)
             self.draw_button(self._button_name[1], 0.55)
         elif 427+170 > self.mouse[0] > 427 and 422+56 > self.mouse[1] > 422:
             self.draw_button(self._button_name[0], 0.45)
+            pygame.mouse.set_cursor(*pygame.cursors.diamond)
             self.draw_button(self._button_name[5], 0.55)
-            if self.click[0] == 1:
-                pygame.quit()
-                quit()
-            # Почему-то не срабатывает у меня с первого раза =((
+            for self.click in pygame.event.get():
+                if self.click.type == pygame.MOUSEBUTTONDOWN and self.click.button == 1:
+                    self._isrunning = False
         else:
-            self.draw_button(self._button_name[0], 0.45)
-            # start_coord = self.menu_button
-            self.draw_button(self._button_name[1], 0.55)
-            # exit_coord = self.menu_button
-
+            # set standard cursor
+            pygame.mouse.set_cursor(*pygame.cursors.tri_left)
+                
     def draw_button(self, button_name, y):
+        '''
+        Calculating buttons position and drawing them
+        '''
         x = 0.5 * self.size[0]
         y = y * self.size[1]
         self.menu_button = pygame.image.load(os.path.join(self._resource_path, 'buttons', button_name))
@@ -81,3 +100,5 @@ class CreateMainWindow:
         ((x - self.menu_button_offsetx), y))
         return self.menu_button
 
+    # def load_image(self, image):
+        
