@@ -12,8 +12,7 @@ class MainLoop:
         pygame.init()
         # Known bug - high CPU usage
         pygame.mixer.quit()
-        # Loading cursor
-        pygame.mouse.set_cursor(*pygame.cursors.tri_left)
+
 
     def on_cleanup(self):
         #Clear all. Need use before exit from game
@@ -43,8 +42,6 @@ class MainLoop:
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                     click_event.mouse_coordinates(pygame.mouse.get_pos())
   
-
-
             pygame.display.update()
             self.FPS.tick(60)
 
