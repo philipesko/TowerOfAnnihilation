@@ -24,6 +24,14 @@ class CreateMainWindow:
         self.main_menu_greets_position = self.surface.blit(self.main_menu_greets, (30, 260))
         self.main_menu_background = pygame.image.load(os.path.join(self._resource_path, 'main.png'))
 
+        #create icon
+        self.icon = pygame.image.load(os.path.join(self._resource_path, 'tower-defense-levels-ship.png'))
+        self.icon = pygame.transform.scale(self.icon, (32, 32))
+
+        pygame.display.set_caption(self._project_name)
+        pygame.display.set_icon(self.icon)
+
+
 
     def positiontext(self, text, position):
         '''
@@ -39,12 +47,12 @@ class CreateMainWindow:
         Creating Main window, with backround, caption, icon, buttons, etc
         '''
         # Loading and formatting windows icon to 32x32
-        icon = pygame.image.load(os.path.join(self._resource_path, 'tower-defense-levels-ship.png'))
-        icon = pygame.transform.scale(icon, (32, 32))
+        # icon = pygame.image.load(os.path.join(self._resource_path, 'tower-defense-levels-ship.png'))
+        # icon = pygame.transform.scale(icon, (32, 32))
 
         # Setting a window caption and an icon
-        pygame.display.set_caption(self._project_name)
-        pygame.display.set_icon(icon)
+        # pygame.display.set_caption(self._project_name)
+        # pygame.display.set_icon(icon)
 
         # Positioning background and pointer indicator for main menu
         self.surface.blit(self.main_menu_background, (0, 0))
