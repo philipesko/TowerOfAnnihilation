@@ -21,6 +21,6 @@ class Scene1(CreateMainWindow):
 
         # Set background for scene 1
         self.surface.blit(self.main_menu_background, (0, 0))
-        #CreateMainWindow.show_mouse_position_with_px(self)
+        CreateMainWindow.show_mouse_position_with_px(self)
 
 
