@@ -9,6 +9,7 @@ class CreateMainWindow:
         
         self._current_path = os.path.dirname(__file__)  # Where your .py file is located
         self._resource_path = os.path.join(self._current_path, 'resources')
+        self._resource_path_font = os.path.join(self._current_path, 'resources')
         self._project_name = 'Tower of Annihilation'
         self._button_name = ['start.png', 'exit.png', 'start_pressed.png', 'exit_pressed.png', 'start_light.png', 'exit_light.png']
         self._isrunning = True
@@ -65,7 +66,7 @@ class CreateMainWindow:
         '''
         Drawing mouse position/click tracker
         '''
-        self.main_menu_greets_fonts = pygame.font.Font(os.path.join(self._resource_path, 'font_forever.ttf'), 10)
+        self.main_menu_greets_fonts = pygame.font.Font(os.path.join(self._resource_path_font, 'font_forever.ttf'), 10)
         self.positiontext(f'Mouse position {pygame.mouse.get_pos()}', (770, 20))
         self.mouse = pygame.mouse.get_pos()
         

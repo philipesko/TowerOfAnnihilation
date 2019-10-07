@@ -1,8 +1,10 @@
-import pygame, gc
+import pygame
+
 
 from MainWindow import CreateMainWindow
 from CheckPos import CheckMousePos
 from Scene_one import Scene1
+
 
 class MainLoop:
 
@@ -16,7 +18,7 @@ class MainLoop:
         pygame.mixer.quit()
         self.CMW = CreateMainWindow()
         self.scene_one_call = Scene1()
-        # create_main_window = CMW.create()
+
 
 
     def on_cleanup(self):
