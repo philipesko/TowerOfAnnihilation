@@ -1,6 +1,8 @@
 import pygame
 import os.path
 
+from config import MAIN_MENU_BUTTON
+
 #ImgOnOff = []
 
 class CreateMainWindow:
@@ -31,6 +33,8 @@ class CreateMainWindow:
 
         pygame.display.set_caption(self._project_name)
         pygame.display.set_icon(self.icon)
+
+
 
 
 
@@ -75,10 +79,12 @@ class CreateMainWindow:
         '''
         Launching button drawing func and tracking mouse over action
         '''
-        self.draw_button(self._button_name[0], 0.45)
-        start_coord = self.menu_button
+        # self.draw_button(self._button_name[0], 0.45)
+        # start_coord = self.menu_button
         self.draw_button(self._button_name[1], 0.55)
         exit_coord = self.menu_button
+        self.draw_button(MAIN_MENU_BUTTON['button_start']['image'], 0.45)
+
 
 
         if 427+170 > self.mouse[0] > 427 and 345+56 > self.mouse[1] > 345:
