@@ -2,7 +2,7 @@ import pygame
 import os.path
 
 
-from MainWindow import CreateMainWindow
+from main_window import CreateMainWindow
 
 
 class Scene1(CreateMainWindow):

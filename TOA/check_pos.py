@@ -1,12 +1,13 @@
 import pygame, os.path
 
+from main_window import button_exit_position, button_start_position, BUTTON_NAME_FOR_MAIN_MENU,MAIN_MENU_BUTTON, CreateMainWindow
+
+
 class CheckMousePos:
 
     def mouse_coordinates(self, coordinates):
-
         self.mouse_coordinates = coordinates
         print(coordinates)
-
 
 
 # if 427+170 > self.mouse[0] > 427 and 345+56 > self.mouse[1] > 345:

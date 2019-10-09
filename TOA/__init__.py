@@ -1,9 +1,9 @@
 import pygame
 
 
-from MainWindow import CreateMainWindow
-from CheckPos import CheckMousePos
-from Scene_one import Scene1
+from main_window import CreateMainWindow
+from check_pos import CheckMousePos
+from scene_one import Scene1
 
 
 class MainLoop:
@@ -37,11 +37,12 @@ class MainLoop:
             else:
                 create_main_window = self.CMW.create()
 
-                if not self.CMW._isrunning:
+                if not self.CMW.isrunning:
                     self._running = False
 
             # Tracking mouse events
             click_event = CheckMousePos()
+
 
             for event in pygame.event.get():
                 """Quit from game if player pushes button ESC"""
