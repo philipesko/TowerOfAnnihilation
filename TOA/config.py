@@ -1,3 +1,5 @@
+"""Configuration file"""
 
-
-MAIN_MENU_BUTTON = {'button_start': {'title': 'Exit', 'x': 100, 'y':100, 'image': 'start.png'}}
+# config for button
+MAIN_MENU_BUTTON = {'button_start': {'title': 'Start', 'y': 0.45, 'image': 'start.png'},
+                    'button_exit': {'title': 'Exit', 'y': 0.55, 'image': 'exit.png'}}

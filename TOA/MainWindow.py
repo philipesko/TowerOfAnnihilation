@@ -81,10 +81,10 @@ class CreateMainWindow:
         '''
         # self.draw_button(self._button_name[0], 0.45)
         # start_coord = self.menu_button
-        self.draw_button(self._button_name[1], 0.55)
-        exit_coord = self.menu_button
-        self.draw_button(MAIN_MENU_BUTTON['button_start']['image'], 0.45)
-
+        # self.draw_button(self._button_name[1], 0.55)
+        # exit_coord = self.menu_button
+        self.draw_button(MAIN_MENU_BUTTON['button_start']['image'], MAIN_MENU_BUTTON['button_start']['y'])
+        self.draw_button(MAIN_MENU_BUTTON['button_exit']['image'], MAIN_MENU_BUTTON['button_exit']['y'])
 
 
         if 427+170 > self.mouse[0] > 427 and 345+56 > self.mouse[1] > 345:
