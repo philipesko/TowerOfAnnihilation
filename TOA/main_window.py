@@ -68,8 +68,8 @@ class CreateMainWindow:
                                                  MAIN_MENU_BUTTON['button_start']['y'])
         button_exit_position = self.draw_button(MAIN_MENU_BUTTON['button_exit']['image'],
                                                 MAIN_MENU_BUTTON['button_exit']['y'])
-        print('button_start_position: ', button_start_position)
-        print('button_exit_position: ', button_exit_position)
+        # print('button_start_position: ', button_start_position)
+        # print('button_exit_position: ', button_exit_position)
 
         if button_start_position[0] + button_start_position[2] > self.mouse[0] > button_start_position[0] and \
                 button_start_position[1] + button_start_position[3] > self.mouse[1] > button_start_position[1]:
