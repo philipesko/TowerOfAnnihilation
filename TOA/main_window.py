@@ -1,7 +1,7 @@
 import pygame
 import os.path
 
-from config import MAIN_MENU_BUTTON, NAME_PROJECT, BUTTON_NAME_FOR_MAIN_MENU
+from config import MAIN_MENU_BUTTON, NAME_PROJECT, BUTTON_NAME_FOR_MAIN_MENU, PATH_TO_RESOURCE, MAIN_SIZE_FOR_WINDOW
 
 button_start_position = None
 button_exit_position = None
@@ -9,28 +9,28 @@ button_exit_position = None
 
 class CreateMainWindow:
 
-    def __init__(self, width=1024, height=768):
+    def __init__(self):
 
-        self._current_path = os.path.dirname(__file__)  # Where your .py file is located
-        self._resource_path = os.path.join(self._current_path, 'resources')
-        self._resource_path_font = os.path.join(self._current_path, 'resources')
+        # self._current_path = os.path.dirname(__file__)  # Where your .py file is located
+        # PATH_TO_RESOURCE = os.path.join(self._current_path, 'resources')
+        # PATH_TO_RESOURCE = os.path.join(self._current_path, 'resources')
         self._project_name = NAME_PROJECT
         self.isrunning = True
         # self._buttons_start_pos = 0.35
 
         # Size of a window in px
-        self.size = width, height
-        self.surface = pygame.display.set_mode(self.size)
+        #self.size = width, height
+        self.surface = pygame.display.set_mode(MAIN_SIZE_FOR_WINDOW)
 
         # Load Fonts, background image and position main text
-        self.main_menu_greets_fonts = pygame.font.Font(os.path.join(self._resource_path, 'font_forever.ttf'), 28)
+        self.main_menu_greets_fonts = pygame.font.Font(os.path.join(PATH_TO_RESOURCE, 'font_forever.ttf'), 28)
         self.main_menu_greets = self.main_menu_greets_fonts.render(f'Welcome to the {self._project_name}', 1,
                                                                    (207, 204, 127))
         self.main_menu_greets_position = self.surface.blit(self.main_menu_greets, (30, 260))
-        self.main_menu_background = pygame.image.load(os.path.join(self._resource_path, 'main.png'))
+        self.main_menu_background = pygame.image.load(os.path.join(PATH_TO_RESOURCE, 'main.png'))
 
         # create icon
-        self.icon = pygame.image.load(os.path.join(self._resource_path, 'tower-defense-levels-ship.png'))
+        self.icon = pygame.image.load(os.path.join(PATH_TO_RESOURCE, 'tower-defense-levels-ship.png'))
         self.icon = pygame.transform.scale(self.icon, (32, 32))
 
         pygame.display.set_caption(self._project_name)
@@ -58,7 +58,7 @@ class CreateMainWindow:
         """
         Drawing mouse position/click tracker
         """
-        self.main_menu_greets_fonts = pygame.font.Font(os.path.join(self._resource_path_font, 'font_forever.ttf'), 10)
+        self.main_menu_greets_fonts = pygame.font.Font(os.path.join(PATH_TO_RESOURCE, 'font_forever.ttf'), 10)
         self.positiontext(f'Mouse position {pygame.mouse.get_pos()}', (770, 20))
         self.mouse = pygame.mouse.get_pos()
 
@@ -92,9 +92,9 @@ class CreateMainWindow:
         '''
         Calculating buttons position and drawing them
         '''
-        x = 0.5 * self.size[0]
-        y = y * self.size[1]
-        self.menu_button = pygame.image.load(os.path.join(self._resource_path, 'buttons', button_name))
+        x = 0.5 * MAIN_SIZE_FOR_WINDOW[0]
+        y = y * MAIN_SIZE_FOR_WINDOW[1]
+        self.menu_button = pygame.image.load(os.path.join(PATH_TO_RESOURCE, 'buttons', button_name))
         self.menu_button_size = self.menu_button.get_rect()
         self.menu_button_offsetx = self.menu_button_size[2] / 2
         self.menu_button = self.surface.blit(self.menu_button,

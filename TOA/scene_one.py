@@ -3,6 +3,7 @@ import os.path
 
 
 from main_window import CreateMainWindow
+from config import PATH_TO_RESOURCE
 
 
 class Scene1(CreateMainWindow):
@@ -12,7 +13,7 @@ class Scene1(CreateMainWindow):
         CreateMainWindow.__init__(self)
         self.main_menu_greets = None
         self.main_menu_greets_position = None
-        self._resource_path = os.path.join(self._current_path, 'resources/maps')
+        self._resource_path = os.path.join(PATH_TO_RESOURCE, 'maps')
         self.background = self.main_menu_background = pygame.image.load(os.path.join(self._resource_path, 'Map1.png'))
 
     def create(self):

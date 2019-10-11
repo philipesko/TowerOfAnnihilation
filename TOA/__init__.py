@@ -4,6 +4,7 @@ import pygame
 from main_window import CreateMainWindow
 from check_pos import CheckMousePos
 from scene_one import Scene1
+from sprites import SpriteTower
 
 
 class MainLoop:
@@ -18,6 +19,7 @@ class MainLoop:
         pygame.mixer.quit()
         self.CMW = CreateMainWindow()
         self.scene_one_call = Scene1()
+        self.sprite = SpriteTower()
 
 
 
@@ -34,6 +36,8 @@ class MainLoop:
             # switch between windows if flag _switch_scene is true:
             if self._switch_scene:
                 create_scene_one_call = self.scene_one_call.create()
+                #TMP create sprite.
+                self.sprite.create_tower_1()
             else:
                 create_main_window = self.CMW.create()
 
