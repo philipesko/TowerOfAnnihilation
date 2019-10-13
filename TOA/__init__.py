@@ -22,6 +22,7 @@ class MainLoop:
         # self.sprite = SpriteTower()
 
 
+
     def on_cleanup(self):
         #Clear all. Need use before exit from game
         pygame.quit()
@@ -55,6 +56,7 @@ class MainLoop:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
                     # set flag for switch windows if key "1" is pushing
                     self._switch_scene = True
+
 
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                     click_event.mouse_coordinates(pygame.mouse.get_pos())
