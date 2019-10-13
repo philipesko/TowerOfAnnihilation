@@ -19,7 +19,7 @@ class MainLoop:
         pygame.mixer.quit()
         self.CMW = CreateMainWindow()
         self.scene_one_call = Scene1()
-        self.sprite = SpriteTower()
+        # self.sprite = SpriteTower()
 
 
 
@@ -37,7 +37,7 @@ class MainLoop:
             if self._switch_scene:
                 create_scene_one_call = self.scene_one_call.create()
                 #TMP create sprite.
-                self.sprite.create_tower_1()
+                # self.sprite.create_tower_1()
             else:
                 create_main_window = self.CMW.create()
 
@@ -56,6 +56,7 @@ class MainLoop:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
                     # set flag for switch windows if key "1" is pushing
                     self._switch_scene = True
+
 
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                     click_event.mouse_coordinates(pygame.mouse.get_pos())
