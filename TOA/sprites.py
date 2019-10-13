@@ -20,3 +20,4 @@ class SpriteTower(pygame.sprite.Sprite):
         # folder with "resources". Default = 0 => 1 Level
         self.sprite_tower_1 = pygame.image.load(os.path.join(self._path_to_sprite, self._image_tower1[flag_level_tower]))
         surface.blit(self.sprite_tower_1, (x, y))
+        #To do
