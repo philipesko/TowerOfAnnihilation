@@ -20,6 +20,8 @@ class MainLoop:
         self.CMW = CreateMainWindow()
         self.scene_one_call = Scene1()
         # self.sprite = SpriteTower()
+        # Tracking mouse events
+        self.click_event = CheckMousePos()
 
 
     def on_cleanup(self):
@@ -43,8 +45,7 @@ class MainLoop:
                 if not self.CMW.isrunning:
                     self._running = False
 
-            # Tracking mouse events
-            click_event = CheckMousePos()
+
 
 
             for event in pygame.event.get():
@@ -56,8 +57,13 @@ class MainLoop:
                     # set flag for switch windows if key "1" is pushing
                     self._switch_scene = True
 
-                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                    click_event.mouse_coordinates(pygame.mouse.get_pos())
+            for coordinates in pygame.mouse.get_pos():
+                coord = []
+                while len(coord) < 2:
+                    coord.append(coordinates)
+                self.click_event.mouse_coordinates(coord)
+                # if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                #     click_event.mouse_coordinates(pygame.mouse.get_pos())
   
             pygame.display.update()
             self.FPS.tick(60)

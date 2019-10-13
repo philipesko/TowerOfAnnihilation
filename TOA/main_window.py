@@ -109,4 +109,3 @@ class CreateMainWindow:
                                              ((x - self.menu_button_offsetx), y))
         return self.menu_button
 
-    # def load_image(self, image):

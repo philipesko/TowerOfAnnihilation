@@ -5,17 +5,17 @@ from main_window import BUTTON_NAME_FOR_MAIN_MENU,MAIN_MENU_BUTTON, CreateMainWi
 
 class CheckMousePos:
 
-    # def __init__(self, coodinates):
+    def __init__(self):
 
-
-    def mouse_coordinates(self, coordinates):
-
-        self.mouse = coordinates
         self.cmw = CreateMainWindow()
         self.button = self.cmw.main_menu_buttons()
         self.start_button = self.button[0]
         self.exit_button = self.button[1]
 
+
+    def mouse_coordinates(self, coordinates):
+
+        self.mouse = coordinates
 
         # print(f' start: {self.start_button}, exit: {self.exit_button}')
 
