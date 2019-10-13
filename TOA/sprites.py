@@ -19,5 +19,5 @@ class SpriteTower(pygame.sprite.Sprite):
         """"Create tower 1 (draw, load image, check level up for tower, x and y start coordinates)"""
         # variable "flag_level_tower" the amount depends on the number of tower levels drawn in a
         # folder with "resources". Default = 0 => 1 Level
-        sprite_tower_1 = pygame.image.load(os.path.join(self._path_to_sprite, self._image_tower1[flag_level_tower]))
+        self.sprite_tower_1 = pygame.image.load(os.path.join(self._path_to_sprite, self._image_tower1[flag_level_tower]))
         surface.blit(self.sprite_tower_1, (x, y))
