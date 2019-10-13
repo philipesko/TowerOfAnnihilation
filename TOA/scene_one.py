@@ -25,10 +25,11 @@ class Scene1(CreateMainWindow):
         print(self.surface)
         # Set background for scene 1
         # surface = self.surface
+        CreateMainWindow.show_mouse_position_with_px(self)
         self.surface.blit(self.main_menu_background, (0, 0))
         sp = SpriteTower()
         sp.create_tower_1(surface=self.surface)
-        CreateMainWindow.show_mouse_position_with_px(self)
+
 
 
 

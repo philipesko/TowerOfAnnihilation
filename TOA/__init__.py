@@ -56,8 +56,8 @@ class MainLoop:
                     # set flag for switch windows if key "1" is pushing
                     self._switch_scene = True
 
-                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                    click_event.mouse_coordinates(pygame.mouse.get_pos())
+                #if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                     #click_event.mouse_coordinates(pygame.mouse.get_pos())
   
             pygame.display.update()
             self.FPS.tick(60)
