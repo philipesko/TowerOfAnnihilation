@@ -19,8 +19,7 @@ class MainLoop:
         pygame.mixer.quit()
         self.CMW = CreateMainWindow()
         self.scene_one_call = Scene1()
-        self.sprite = SpriteTower()
-
+        # self.sprite = SpriteTower()
 
 
     def on_cleanup(self):
@@ -37,7 +36,7 @@ class MainLoop:
             if self._switch_scene:
                 create_scene_one_call = self.scene_one_call.create()
                 #TMP create sprite.
-                self.sprite.create_tower_1()
+                # self.sprite.create_tower_1()
             else:
                 create_main_window = self.CMW.create()
 
