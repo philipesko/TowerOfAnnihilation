@@ -21,15 +21,13 @@ class Scene1(CreateMainWindow):
 
     def create(self):
         """Main method from MainWindows reinitialization"""
-        # super(Scene1, self).create()
-        print(self.surface)
-        # Set background for scene 1
-        # surface = self.surface
         CreateMainWindow.show_mouse_position_with_px(self)
+        # Set background for scene 1
         self.surface.blit(self.main_menu_background, (0, 0))
+        # temporary Create sprite
         sp = SpriteTower()
-        sp.create_tower_1(surface=self.surface)
-
+        sp = sp.create_tower_1(surface=self.surface)
+        self.surface.blit(sp, (500, 500))
 
 
 
