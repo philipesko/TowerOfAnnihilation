@@ -11,18 +11,8 @@ class CreateMainWindow:
     surface = pygame.display.set_mode(MAIN_SIZE_FOR_WINDOW)
 
     def __init__(self):
-
-        # self._current_path = os.path.dirname(__file__)  # Where your .py file is located
-        # PATH_TO_RESOURCE = os.path.join(self._current_path, 'resources')
-        # PATH_TO_RESOURCE = os.path.join(self._current_path, 'resources')
         self._project_name = NAME_PROJECT
         self.isrunning = True
-        # self._buttons_start_pos = 0.35
-
-        # Size of a window in px
-        #self.size = width, height
-        # self.surface = pygame.display.set_mode(MAIN_SIZE_FOR_WINDOW)
-
         # Load Fonts, background image and position main text
         self.main_menu_greets_fonts = pygame.font.Font(os.path.join(PATH_TO_RESOURCE, 'font_forever.ttf'), 28)
         self.main_menu_greets = self.main_menu_greets_fonts.render(f'Welcome to the {self._project_name}', 1,
