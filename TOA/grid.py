@@ -15,16 +15,16 @@ class Grid:
         # Number of cells on X axis
         self.x_cells_quantity = int(MAIN_SIZE_FOR_WINDOW[0] / self.cell[0])
         self.row = self.define_cell_list(self.x_cells_quantity)
-        
+        print(self.row)
         # Number of cells on Y axis
         self.y_cells_quantity = int(MAIN_SIZE_FOR_WINDOW[1] / self.cell[1])
-        self.string = self.define_cell_list(self.y_cells_quantity)
+        # self.string = self.define_cell_list(self.y_cells_quantity)
         # self.grid_cell_names()
-        self.convert_to_dict(self.row)
+        # self.convert_to_dict(self.row)
         # Grid list
-        self.grid.append(self.row)
-        self.grid.append(self.string)
-        print(f'Two lists: \n{self.grid[0]}, \n{self.grid[1]}')
+        # self.grid.append(self.row)
+        # self.grid.append(self.string)
+        # print(f'Two lists: \n{self.grid[0]}, \n{self.grid[1]}')
 
 
     def define_cell_list(self, cell_quantity):
@@ -32,11 +32,12 @@ class Grid:
         Making list for a row or a string
         """
         # Defining empty row/string list
-        list_obj = []
+        list_obj = {}
         # Making list
-        for cell_quantity in range(0, cell_quantity):
-            cell_quantity = (cell_quantity + 1)
-            list_obj.append(cell_quantity)
+        for cell_quantity in range(cell_quantity):
+            # list_obj[cell_quantity] = [i for i in range(13)]
+            for i in range(13):
+                list_obj[f'{cell_quantity}:{i}'] = None
         return list_obj
 
 
@@ -48,7 +49,7 @@ class Grid:
         self.row = [self.row [i:i + 1] for i in range(len(self.row))]
         self.string = [self.string [i:i + 1] for i in range(len(self.string))]
         
-        # print(f'    ROWS: {self.row}, \n    STRINGS {self.string}')
+        print(f'    ROWS: {self.row}, \n    STRINGS {self.string}')
         # for y in self.row:
         #     for 
 

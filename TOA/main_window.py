@@ -17,6 +17,7 @@ class CreateMainWindow:
         # PATH_TO_RESOURCE = os.path.join(self._current_path, 'resources')
         self._project_name = NAME_PROJECT
         self.isrunning = True
+        self.switch_scene = False
         # self._buttons_start_pos = 0.35
 
         # Size of a window in px
@@ -79,6 +80,10 @@ class CreateMainWindow:
             self.draw_button(BUTTON_NAME_FOR_MAIN_MENU[4], MAIN_MENU_BUTTON['button_start']['y'])
             self.draw_button(BUTTON_NAME_FOR_MAIN_MENU[1], MAIN_MENU_BUTTON['button_exit']['y'])
 
+            for self.click in pygame.event.get():
+                if self.click.type == pygame.MOUSEBUTTONDOWN and self.click.button == 1:
+                    self.switch_scene = True
+                    
         elif button_exit_position[0] + button_exit_position[2] > self.mouse[0] > button_exit_position[0] and\
                 button_exit_position[1] + button_exit_position[3] > self.mouse[1] > button_exit_position[1]:
             self.draw_button(BUTTON_NAME_FOR_MAIN_MENU[0], MAIN_MENU_BUTTON['button_start']['y'])
