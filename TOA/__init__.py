@@ -46,8 +46,6 @@ class MainLoop:
                     self._running = False
 
 
-
-
             for event in pygame.event.get():
                 """Quit from game if player pushes button ESC"""
                 if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
@@ -57,18 +55,8 @@ class MainLoop:
                     # set flag for switch windows if key "1" is pushing
                     self._switch_scene = True
 
-<<<<<<< HEAD
-            for coordinates in pygame.mouse.get_pos():
-                coord = []
-                while len(coord) < 2:
-                    coord.append(coordinates)
-                self.click_event.mouse_coordinates(coord)
-                # if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                #     click_event.mouse_coordinates(pygame.mouse.get_pos())
-=======
-                #if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                     #click_event.mouse_coordinates(pygame.mouse.get_pos())
->>>>>>> master
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                    self.click_event.mouse_coordinates(pygame.mouse.get_pos())
   
             pygame.display.update()
             self.FPS.tick(60)
