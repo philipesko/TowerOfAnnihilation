@@ -24,7 +24,7 @@ class Grid:
         # Grid list
         self.grid.append(self.row)
         self.grid.append(self.string)
-        print(f'Two lists: {self.grid}')
+        print(f'Two lists: \n{self.grid[0]}, \n{self.grid[1]}')
 
 
     def define_cell_list(self, cell_quantity):
@@ -69,6 +69,18 @@ class Grid:
 в init checkpos и расположение инициализации класса
 как разделить словарь на список словарей из convert to dict?
 """
+
+"""
+Пример будущего словаря (списка словарей: один словарь - одна ячейка):
+self.grid = [
+    {Name : (1,1),
+    Coordinates : (500, 500),
+    IsActive : True или False (можно или нельзя строить башню)
+    Tower : тут варианты могут быть: отсуствие башни, присутствие(соответствующее какому-то уровню)
+}]
+
+"""
+
 
     # def generate_cell_names(self):
     #     self.alphabet = string.ascii_uppercase[0:]
