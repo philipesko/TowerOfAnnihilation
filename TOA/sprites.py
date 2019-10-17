@@ -22,5 +22,6 @@ class SpriteTower(pygame.sprite.Sprite):
         # tmp scale
         self.sprite_tower_1 = pygame.transform.scale(self.sprite_tower_1, (50, 50))
         #surface.blit(self.sprite_tower_1, (x, y))
+        self.sprite_tower_1 = pygame.transform.rotate(self.sprite_tower_1, 270)
         return self.sprite_tower_1
         #To do
