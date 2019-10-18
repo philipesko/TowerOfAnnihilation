@@ -1,10 +1,9 @@
 import pygame
 import os.path
 
-
 from main_window import CreateMainWindow
 from config import PATH_TO_RESOURCE
-from sprites import SpriteTower
+from sprites import SpriteTower, SpriteEnemy
 
 
 class Scene1(CreateMainWindow):
@@ -27,8 +26,11 @@ class Scene1(CreateMainWindow):
         sp = SpriteTower()
         sp = sp.create_tower_1(surface=self.surface)
 
-        self.surface.blit(sp, (500, 500))
+        sprite_enemy = SpriteEnemy()
+        group_sprite_enemy = pygame.sprite.Group(sprite_enemy)
 
+        group_sprite_enemy.update()
+        group_sprite_enemy.draw(self.surface)
 
-
+        # self.surface.blit(sp, (500, 500))
 
