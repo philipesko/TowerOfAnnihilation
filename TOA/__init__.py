@@ -23,9 +23,8 @@ class MainLoop:
         # Tracking mouse events
         # self.click_event = CheckMousePos()
 
-
     def on_cleanup(self):
-        #Clear all. Need use before exit from game
+        # Clear all. Need use before exit from game
         pygame.quit()
         quit()
 
@@ -33,11 +32,10 @@ class MainLoop:
     def run(self):
         """Main loop"""
         while self._running:
-            
             # switch between windows if flag _switch_scene is true:
             if self._switch_scene:
                 create_scene_one_call = self.scene_one_call.create()
-                #TMP create sprite.
+                # TMP create sprite.
                 # self.sprite.create_tower_1()
             else:
                 create_main_window = self.CMW.create()
@@ -57,7 +55,7 @@ class MainLoop:
 
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                     click_event.mouse_coordinates(pygame.mouse.get_pos())
-  
+
             pygame.display.update()
             self.FPS.tick(60)
 
@@ -65,6 +63,3 @@ class MainLoop:
 if __name__ == "__main__":
     APP = MainLoop()
     APP.run()
-
-
-

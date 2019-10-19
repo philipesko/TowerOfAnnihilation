@@ -1,6 +1,6 @@
 import pygame, os.path
 
-# from main_window import button_exit_position, button_start_position, BUTTON_NAME_FOR_MAIN_MENU,MAIN_MENU_BUTTON, CreateMainWindow
+# from main_window import button_exit_position, button_start_position, BUTTON_NAME_FOR_MAIN_MENU, MAIN_MENU_BUTTON, CreateMainWindow
 
 
 class CheckMousePos:

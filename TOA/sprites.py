@@ -23,4 +23,4 @@ class SpriteTower(pygame.sprite.Sprite):
         self.sprite_tower_1 = pygame.transform.scale(self.sprite_tower_1, (50, 50))
         # surface.blit(self.sprite_tower_1, (x, y))
         return self.sprite_tower_1
-        #To do
+        # To do
