@@ -23,8 +23,8 @@ class Scene1(CreateMainWindow):
         # Set background for scene 1
         self.surface.blit(self.main_menu_background, (0, 0))
         # temporary Create sprite
-        sp = SpriteTower()
-        sp = sp.create_tower_1(surface=self.surface)
+        # sp = SpriteTower()
+        # sp = sp.create_tower_1(surface=self.surface)
 
         sprite_enemy = SpriteEnemy()
         group_sprite_enemy = pygame.sprite.Group(sprite_enemy)

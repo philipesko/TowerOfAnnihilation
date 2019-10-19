@@ -9,7 +9,7 @@ class SpriteTower(pygame.sprite.Sprite):
 
     def __init__(self):
         # pygame.sprite.Sprite.__init__(self)
-        super(pygame.sprite.Sprite, self).__init__()
+        super(SpriteTower, self).__init__()
         self._path_to_sprite = os.path.join(PATH_TO_RESOURCE, 'tower-defense-turrets')
         self._image_tower1 = ['turret-1-1.png', 'turret-1-2.png', 'turret-1-3.png']
         # self.sprite_tower_1 = pygame.image.load(os.path.join(self._path_to_sprite, self._image_tower1[0]))
@@ -27,17 +27,18 @@ class SpriteEnemy(pygame.sprite.Sprite):
     """ Class for enemy sprite"""
 
     def __init__(self):
-        super(pygame.sprite.Sprite, self).__init__()
+        super(SpriteEnemy, self).__init__()
         self._path_to_sprite_enemy = os.path.join(PATH_TO_RESOURCE, 'creep\creep-1-blue')
         self._images_enemy1 = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png']
         self.index = 0
         self.image = pygame.image.load(os.path.join(self._path_to_sprite_enemy, self._images_enemy1[self.index]))
-        self.rect = pygame.Rect(2, 2, 50, 50)
+        # self.rect = pygame.Rect(2, 2, 46, 46)
+        # print(self.image)
         # self.image = self._images_enemy1[self.index]
 
     def update(self):
         self.index += 1
-        if self.index >= len(self.image):
+        if self.index >= len(self._images_enemy1):
             self.index = 0
         self.image = self._images_enemy1[self.index]
         # return self.image
