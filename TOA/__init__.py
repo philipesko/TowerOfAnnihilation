@@ -28,7 +28,6 @@ class MainLoop:
         pygame.quit()
         quit()
 
-
     def run(self):
         """Main loop"""
         while self._running:
