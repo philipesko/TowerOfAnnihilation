@@ -2,9 +2,9 @@ import pygame
 
 
 from main_window import CreateMainWindow
-from check_pos import CheckMousePos
+# from check_pos import CheckMousePos
 from scene_one import Scene1
-from sprites import SpriteTower
+# from sprites import SpriteTower
 
 
 class MainLoop:
@@ -21,7 +21,7 @@ class MainLoop:
         self.scene_one_call = Scene1()
         # self.sprite = SpriteTower()
         # Tracking mouse events
-        self.click_event = CheckMousePos()
+        # self.click_event = CheckMousePos()
 
     def on_cleanup(self):
         # Clear all. Need use before exit from game
@@ -49,8 +49,8 @@ class MainLoop:
                 if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                     self._running = False
                     self.on_cleanup()
-                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                    self.click_event.mouse_coordinates(pygame.mouse.get_pos())
+                # if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                #     self.click_event.mouse_coordinates(pygame.mouse.get_pos())
 
             pygame.display.update()
             self.FPS.tick(60)

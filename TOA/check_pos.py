@@ -4,10 +4,10 @@ from config import CELL_SIZE
 
 class CheckMousePos:
 
-    def __init__(self):
+    # def __init__(self):
 
-        self.grid = Grid()
-        self.grid = self.grid.define_grid()
+        # self.grid = Grid()
+        # self.grid = self.grid.define_grid()
 
     def mouse_coordinates(self, coordinates):
 

@@ -44,6 +44,7 @@ class Grid:
         self.cell_list = cell_list
         for i in self.cell_list:
             self.grid[i]['is_active'] = True
+        print(self.grid)
         return self.grid
 
 
