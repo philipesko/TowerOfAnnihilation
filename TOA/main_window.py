@@ -21,7 +21,7 @@ class CreateMainWindow:
         # self._buttons_start_pos = 0.35
 
         # Size of a window in px
-        #self.size = width, height
+        # self.size = width, height
         # self.surface = pygame.display.set_mode(MAIN_SIZE_FOR_WINDOW)
 
         # Load Fonts, background image and position main text
@@ -83,7 +83,7 @@ class CreateMainWindow:
             for self.click in pygame.event.get():
                 if self.click.type == pygame.MOUSEBUTTONDOWN and self.click.button == 1:
                     self.switch_scene = True
-                    
+
         elif button_exit_position[0] + button_exit_position[2] > self.mouse[0] > button_exit_position[0] and\
                 button_exit_position[1] + button_exit_position[3] > self.mouse[1] > button_exit_position[1]:
             self.draw_button(BUTTON_NAME_FOR_MAIN_MENU[0], MAIN_MENU_BUTTON['button_start']['y'])
@@ -110,4 +110,3 @@ class CreateMainWindow:
         self.menu_button = self.surface.blit(self.menu_button,
                                              ((x - self.menu_button_offsetx), y))
         return self.menu_button
-
