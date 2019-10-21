@@ -11,13 +11,13 @@ class CheckMousePos:
 
     def mouse_coordinates(self, coordinates):
 
-        self.mouse_coordinates = coordinates
         print(coordinates)
         self.x = int(coordinates[0] / CELL_SIZE[0])
         self.y = int(coordinates[1] / CELL_SIZE[1])
         self.cell = f'{self.x}:{self.y}'
         for i in self.grid.keys():
             if i == self.cell:
+                print(self.grid[i]['is_active'])
                 print(i)
 
 
