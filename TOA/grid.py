@@ -1,31 +1,23 @@
-from config import MAIN_SIZE_FOR_WINDOW
+from config import MAIN_SIZE_FOR_WINDOW, CELL_SIZE
 
 
 class Grid:
 
     def __init__(self):
 
-        # Defining grid
-        self.grid = {}
-
-        # Defining cell size
-        self.cell = (58, 58)
-
         # Number of cells on X axis
-        self.x_cells_quantity = int(MAIN_SIZE_FOR_WINDOW[0] / self.cell[0])
-
+        self.x_cells_quantity = int(MAIN_SIZE_FOR_WINDOW[0] / CELL_SIZE[0])
         # Number of cells on Y axis
-        self.y_cells_quantity = int(MAIN_SIZE_FOR_WINDOW[1] / self.cell[1])
-
+        self.y_cells_quantity = int(MAIN_SIZE_FOR_WINDOW[1] / CELL_SIZE[1])
         # Generating grid
-        self.grid = self.define_cell_list(self.x_cells_quantity)
-        # self.grid = self.compute_coordinates()
-        print(self.grid)
+        self.define_grid()
 
     def define_cell_list(self, cell_quantity):
         """
-        Making list for a row or a string
+        Generating a grid
         """
+        # Defining a grid
+        self.grid = {}
         # Making dictionary
         for cell_quantity in range(cell_quantity):
             for i in range(13):
@@ -36,6 +28,12 @@ class Grid:
             item['towerlevel'] = 0
         return self.grid
 
+    def define_grid(self):
+        '''
+        Defining a grid
+        '''
+        self.grid = self.define_cell_list(self.x_cells_quantity)
+        return self.grid
 
-if __name__ == '__main__':
-    Grid()
+# if __name__ == '__main__':
+#     Grid()

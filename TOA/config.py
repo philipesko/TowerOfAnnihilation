@@ -4,6 +4,7 @@ import os.path
 
 # config for project
 MAIN_SIZE_FOR_WINDOW = 1024, 768
+CELL_SIZE = 58, 58
 SURFACE = pygame.display.set_mode(MAIN_SIZE_FOR_WINDOW)
 PATH_TO_RESOURCE = os.path.join(os.path.dirname(__file__), 'resources')
 NAME_PROJECT = 'Tower of Annihilation'
