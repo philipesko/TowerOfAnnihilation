@@ -28,7 +28,3 @@ class Scene1(CreateMainWindow):
         sp = SpriteTower()
         sp = sp.create_tower_1(surface=self.surface)
         self.surface.blit(sp, (468, 295))
-
-
-
-
