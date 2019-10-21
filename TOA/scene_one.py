@@ -5,6 +5,7 @@ import os.path
 from main_window import CreateMainWindow
 from config import PATH_TO_RESOURCE
 from sprites import SpriteTower
+from grid import Grid
 
 
 class Scene1(CreateMainWindow):
@@ -14,10 +15,15 @@ class Scene1(CreateMainWindow):
         super(CreateMainWindow, self).__init__()
 
         # CreateMainWindow.__init__(self)
+        self.grid = Grid()
         self.main_menu_greets = None
         self.main_menu_greets_position = None
         self._resource_path = os.path.join(PATH_TO_RESOURCE, 'maps')
-        self.background = self.main_menu_background = pygame.image.load(os.path.join(self._resource_path, 'Map1.png'))
+        self.background = self.main_menu_background = pygame.image.load(os.path.join(self._resource_path, 'Map_grid.png'))
+        # Setting active cells
+        self.active_cells = ['6:3', '9:3', '12:3', '8:5', '11:5', '13:5', '9:6', '10:6', '11:6', '13:6',
+                                    '11:7', '4:8', '6:8', '11:9', '2:10', '4:10', '7:10', '5:12', '8:12']
+        # self.grid.active_cells(self.active_cells)
 
     def create(self):
         """Main method from MainWindows reinitialization"""

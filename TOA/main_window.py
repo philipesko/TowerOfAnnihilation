@@ -65,7 +65,7 @@ class CreateMainWindow:
         self.mouse = pygame.mouse.get_pos()
 
     def main_menu_buttons(self):
-        """Launching button drawing func and tracking mouse over action"""
+        """Launching button drawing func and tracking mouseover action"""
         button_start_position = self.draw_button(MAIN_MENU_BUTTON['button_start']['image'],
                                                  MAIN_MENU_BUTTON['button_start']['y'])
         button_exit_position = self.draw_button(MAIN_MENU_BUTTON['button_exit']['image'],

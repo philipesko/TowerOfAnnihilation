@@ -1,10 +1,14 @@
 from config import MAIN_SIZE_FOR_WINDOW, CELL_SIZE
+# from scene_one import Scene1
 
 
 class Grid:
 
     def __init__(self):
 
+        # self.scene1 = Scene1()
+        # self.active_cells = Scene1().active_cells
+        # print(self.active_cells)
         # Number of cells on X axis
         self.x_cells_quantity = int(MAIN_SIZE_FOR_WINDOW[0] / CELL_SIZE[0])
         # Number of cells on Y axis
@@ -35,5 +39,13 @@ class Grid:
         self.grid = self.define_cell_list(self.x_cells_quantity)
         return self.grid
 
-# if __name__ == '__main__':
-#     Grid()
+    def active_cells(self, cell_list):
+
+        self.cell_list = cell_list
+        for i in self.cell_list:
+            self.grid[i]['is_active'] = True
+        return self.grid
+
+
+if __name__ == '__main__':
+    Grid()
