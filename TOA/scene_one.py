@@ -25,7 +25,8 @@ class Scene1(CreateMainWindow):
         self.surface.blit(self.main_menu_background, (0, 0))
         # temporary Create sprite
         sp = SpriteTower()
-        sp = sp.create_tower_1(surface=self.surface)
+        sp.create_tower_1()
+        sp.turn_tower(90)
 
         # self.surface.blit(sp, (500, 500))
 

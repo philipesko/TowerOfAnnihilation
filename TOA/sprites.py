@@ -17,8 +17,10 @@ class SpriteTower(pygame.sprite.Sprite):
         self.y = None
         self.surface = SURFACE
 
-    def create_tower_1(self, surface, flag_level_tower=2, scaleX=50, scaleY=50, x=500, y=500, angle=90):
+    def create_tower_1(self, flag_level_tower=2, scale_x=50, scale_y=50, x=500, y=500, angle=90):
         """"Create tower 1 (draw, load image, check level up for tower, x and y start coordinates)
+        :param scaleY:
+        :param scaleX:
         :param surface:
         :param flag_level_tower: load image with compare with level tower.
         :param x: Position X on window
@@ -33,11 +35,11 @@ class SpriteTower(pygame.sprite.Sprite):
         self.sprite_tower_1 = pygame.image.load(os.path.join(self._path_to_sprite,
                                                              self._image_tower1[flag_level_tower]))
         # tmp scale
-        self.sprite_tower_1 = pygame.transform.scale(self.sprite_tower_1, (scaleX, scaleY))
+        self.sprite_tower_1 = pygame.transform.scale(self.sprite_tower_1, (scale_x, scale_y))
         self.surface.blit(self.sprite_tower_1, (self.x, self.y))
         # To do
 
-    def turn_tower(self, surface, angle):
+    def turn_tower(self, angle):
         """
         Method for turn the tower on angle
         :param surface:
