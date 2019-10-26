@@ -10,9 +10,14 @@ class CheckMousePos:
     #     self.mouse_coordinates(coordinates)
 
     def mouse_coordinates(self, coordinates):
+        """
 
-        self.mouse_coordinates = coordinates
+        :param coordinates:
+        :return: coordinates
+        """
+        mouse_coordinates = coordinates
         print(coordinates)
+        return coordinates
 
 
     # def __init__(self):

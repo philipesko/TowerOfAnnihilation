@@ -5,7 +5,7 @@ from config import PATH_TO_RESOURCE, SURFACE
 
 
 class SpriteTower(pygame.sprite.Sprite):
-    """Class for Towers"""
+    """Abstract Class for Towers """
 
     def __init__(self):
         super(pygame.sprite.Sprite, self).__init__()

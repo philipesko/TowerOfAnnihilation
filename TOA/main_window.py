@@ -40,6 +40,8 @@ class CreateMainWindow:
     def positiontext(self, text, position):
         """
         Positioning Greetings text and drawing it
+        :param text:
+        :param position:
         """
         # draw text with team fonts on active window
         text_position = self.main_menu_greets_fonts.render(text, 2, (207, 204, 127))
@@ -96,6 +98,9 @@ class CreateMainWindow:
     def draw_button(self, button_name, y):
         '''
         Calculating buttons position and drawing them
+        :param button_name:
+        :param y:
+        :return:
         '''
         x = 0.5 * MAIN_SIZE_FOR_WINDOW[0]
         y = y * MAIN_SIZE_FOR_WINDOW[1]
