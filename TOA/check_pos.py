@@ -5,15 +5,15 @@ class CheckMousePos:
 
     def mouse_coordinates(self, coordinates):
 
-        print(coordinates)
+        print(f'Координаты клика: {coordinates}')
         self.x = int(coordinates[0] / CELL_SIZE[0])
         self.y = int(coordinates[1] / CELL_SIZE[1])
         self.cell = f'{self.x}:{self.y}'
-        for i in GRID.keys():
-            if i == self.cell:
-                print(GRID[i]['is_active'])
-                print(i)
-
+        for cell_name in GRID.keys():
+            if cell_name == self.cell:
+                print(f"Активна ли ячейка: {GRID[cell_name]['is_active']}")
+                print(f'Имя ячейки: {cell_name}')
+                print(f"Координаты: {GRID[cell_name]['coord']}")
 
 if __name__ == '__main__':
     CheckMousePos()
