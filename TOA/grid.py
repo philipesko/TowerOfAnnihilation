@@ -48,7 +48,7 @@ class Grid:
             if cell_name == '0:0':
                 continue
             if carriage == 928:
-                carriage = 0
+                carriage = start_pos
                 y += 58
                 item['coord'][1] += y
                 continue
