@@ -16,15 +16,14 @@ class Grid:
         self.define_grid()
         print(GRID)
 
-    def define_cell_list(self, cell_quantity):
+    def define_cell_list(self, x_cells_quantity, y_cells_quantity):
         """
         Generating a grid
         """
         # Making dictionary
-        for cell_quantity in range(cell_quantity):
-            for i in range(17):
-                # GRID[f'{cell_quantity}:{i}'] = {'coord': [0, 0]}
-                GRID[f'{i}:{cell_quantity}'] = {'coord': [0, 0]}
+        for y_cell_number in range(y_cells_quantity):
+            for x_cell_number in range(x_cells_quantity):
+                GRID[f'{x_cell_number}:{y_cell_number}'] = {'coord': [0, 0]}
         # Filling grid with default values
         for item in GRID.values():
             item['is_active'] = False
@@ -36,7 +35,7 @@ class Grid:
         '''
         Defining a grid
         '''
-        GRID = self.define_cell_list(self.x_cells_quantity)
+        GRID = self.define_cell_list(self.x_cells_quantity, self.y_cells_quantity)
         return GRID
 
     def fill_coords(self, x, y, start_pos):
