@@ -13,7 +13,7 @@ class CheckMousePos:
             if cell_name == self.cell:
                 print(f"Активна ли ячейка: {GRID[cell_name]['is_active']}")
                 print(f'Имя ячейки: {cell_name}')
-                print(f"Координаты: {GRID[cell_name]['coord']}")
+                print(f"Координаты ячейки: {GRID[cell_name]['coord']}")
 
 if __name__ == '__main__':
     CheckMousePos()
