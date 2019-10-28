@@ -4,7 +4,7 @@ import pygame
 from main_window import CreateMainWindow
 from check_pos import CheckMousePos
 from scene_one import Scene1
-from sprites import SpriteTower
+# from sprites import SpriteTower
 
 
 class MainLoop:
@@ -52,7 +52,7 @@ class MainLoop:
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                     self.click_event.mouse_coordinates(pygame.mouse.get_pos())
 
-            pygame.display.update()
+            pygame.display.flip()
             self.FPS.tick(60)
 
 
