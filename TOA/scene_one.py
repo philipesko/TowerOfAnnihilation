@@ -4,7 +4,7 @@ import os.path
 
 from main_window import CreateMainWindow
 from config import PATH_TO_RESOURCE
-from sprites import SpriteTower
+from Tower import SpriteTower
 
 
 class Scene1(CreateMainWindow):

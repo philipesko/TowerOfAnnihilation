@@ -4,7 +4,7 @@ import pygame
 from main_window import CreateMainWindow
 from check_pos import CheckMousePos
 from scene_one import Scene1
-from sprites import SpriteTower
+from Tower import SpriteTower
 
 
 class MainLoop:
