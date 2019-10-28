@@ -12,13 +12,9 @@ class CreateMainWindow:
 
     def __init__(self):
 
-        # self._current_path = os.path.dirname(__file__)  # Where your .py file is located
-        # PATH_TO_RESOURCE = os.path.join(self._current_path, 'resources')
-        # PATH_TO_RESOURCE = os.path.join(self._current_path, 'resources')
         self._project_name = NAME_PROJECT
         self.isrunning = True
         self.switch_scene = False
-        # self._buttons_start_pos = 0.35
 
         # Size of a window in px
         # self.size = width, height
@@ -82,6 +78,8 @@ class CreateMainWindow:
 
             for self.click in pygame.event.get():
                 if self.click.type == pygame.MOUSEBUTTONDOWN and self.click.button == 1:
+                    self.surface.fill((30, 30, 30))
+                    pygame.mouse.set_cursor(*pygame.cursors.tri_left)
                     self.switch_scene = True
 
         elif button_exit_position[0] + button_exit_position[2] > self.mouse[0] > button_exit_position[0] and\
