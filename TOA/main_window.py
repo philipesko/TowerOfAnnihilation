@@ -12,15 +12,12 @@ class CreateMainWindow:
 
     def __init__(self):
 
-        # self._current_path = os.path.dirname(__file__)  # Where your .py file is located
-        # PATH_TO_RESOURCE = os.path.join(self._current_path, 'resources')
-        # PATH_TO_RESOURCE = os.path.join(self._current_path, 'resources')
         self._project_name = NAME_PROJECT
         self.isrunning = True
-        # self._buttons_start_pos = 0.35
+        self.switch_scene = False
 
         # Size of a window in px
-        #self.size = width, height
+        # self.size = width, height
         # self.surface = pygame.display.set_mode(MAIN_SIZE_FOR_WINDOW)
 
         # Load Fonts, background image and position main text
@@ -67,7 +64,7 @@ class CreateMainWindow:
         return self.mouse
 
     def main_menu_buttons(self):
-        """Launching button drawing func and tracking mouse over action"""
+        """Launching button drawing func and tracking mouseover action"""
         button_start_position = self.draw_button(MAIN_MENU_BUTTON['button_start']['image'],
                                                  MAIN_MENU_BUTTON['button_start']['y'])
         button_exit_position = self.draw_button(MAIN_MENU_BUTTON['button_exit']['image'],
@@ -81,6 +78,12 @@ class CreateMainWindow:
             pygame.mouse.set_cursor(*pygame.cursors.diamond)
             self.draw_button(BUTTON_NAME_FOR_MAIN_MENU[4], MAIN_MENU_BUTTON['button_start']['y'])
             self.draw_button(BUTTON_NAME_FOR_MAIN_MENU[1], MAIN_MENU_BUTTON['button_exit']['y'])
+
+            for self.click in pygame.event.get():
+                if self.click.type == pygame.MOUSEBUTTONDOWN and self.click.button == 1:
+                    self.surface.fill((30, 30, 30))
+                    pygame.mouse.set_cursor(*pygame.cursors.tri_left)
+                    self.switch_scene = True
 
         elif button_exit_position[0] + button_exit_position[2] > self.mouse[0] > button_exit_position[0] and\
                 button_exit_position[1] + button_exit_position[3] > self.mouse[1] > button_exit_position[1]:
@@ -111,5 +114,3 @@ class CreateMainWindow:
         self.menu_button = self.surface.blit(self.menu_button,
                                              ((x - self.menu_button_offsetx), y))
         return self.menu_button
-
-    # def load_image(self, image):
