@@ -1,5 +1,6 @@
 import pygame
 import os.path
+import math
 
 from main_window import CreateMainWindow
 from config import PATH_TO_RESOURCE
@@ -26,15 +27,15 @@ class Scene1(CreateMainWindow):
         # temporary Create sprite
         sp = SpriteTower()
         mouse = self.show_mouse_position_with_px()
-        sp.set_param_tower()  # set parameters for tower in abstract class.
+        # sp.set_param_tower()  # set parameters for tower in abstract class.
         if 550 > mouse[0] > 500 and 550 > mouse[1] > 500:
             sp.selected = True
 
-        pos2 = pygame.math.Vector2(1,0)
-        pos1 = pygame.math.Vector2(525 - mouse[0],  525 - mouse[1])
-        pos1 = pos1.angle_to(pos2)
+        # pos2 = pygame.math.Vector2(500, 500)
+        # pos1 = pygame.math.Vector2(500 - mouse[0],  500 - mouse[1])
+        # angle = pos1.angle_to(pos2)
         # print(pos1)
-        sp.turn_tower(pos1+90)
+        sp.turn_tower(mouse)
         sp.draw_radius()
         sp.draw_tower()
 
