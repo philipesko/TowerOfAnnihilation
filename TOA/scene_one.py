@@ -6,7 +6,6 @@ from main_window import CreateMainWindow
 from config import PATH_TO_RESOURCE
 from Tower import SpriteTower
 from config import PATH_TO_RESOURCE, GRID
-from sprites import SpriteTower
 from grid import Grid
 # from check_pos import CheckMousePos
 

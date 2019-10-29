@@ -1,6 +1,4 @@
-import pygame, os.path
-
-from main_window import button_exit_position, button_start_position, BUTTON_NAME_FOR_MAIN_MENU,MAIN_MENU_BUTTON, CreateMainWindow
+from config import MAIN_SIZE_FOR_WINDOW, CELL_SIZE, GRID
 
 
 class CheckMousePos:
@@ -23,12 +21,3 @@ class CheckMousePos:
         return coordinates
 
 
-# if 427+170 > self.mouse[0] > 427 and 345+56 > self.mouse[1] > 345:
-#     self.draw_button(self._button_name[4], 0.45)
-#     self.draw_button(self._button_name[1], 0.55)
-# elif 427+170 > self.mouse[0] > 427 and 422+56 > self.mouse[1] > 422:
-#     self.draw_button(self._button_name[0], 0.45)
-#     self.draw_button(self._button_name[5], 0.55)
-#     for self.click in pygame.event.get():
-#         if self.click.type == pygame.MOUSEBUTTONDOWN and self.click.button == 1:
-#             self._isrunning = False
