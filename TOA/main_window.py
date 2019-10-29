@@ -37,6 +37,8 @@ class CreateMainWindow:
     def positiontext(self, text, position):
         """
         Positioning Greetings text and drawing it
+        :param text:
+        :param position:
         """
         # draw text with team fonts on active window
         text_position = self.main_menu_greets_fonts.render(text, 2, (207, 204, 127))
@@ -59,6 +61,7 @@ class CreateMainWindow:
         self.main_menu_greets_fonts = pygame.font.Font(os.path.join(PATH_TO_RESOURCE, 'font_forever.ttf'), 10)
         self.positiontext(f'Mouse position {pygame.mouse.get_pos()}', (770, 20))
         self.mouse = pygame.mouse.get_pos()
+        return self.mouse
 
     def main_menu_buttons(self):
         """Launching button drawing func and tracking mouseover action"""
@@ -99,6 +102,9 @@ class CreateMainWindow:
     def draw_button(self, button_name, y):
         '''
         Calculating buttons position and drawing them
+        :param button_name:
+        :param y:
+        :return:
         '''
         x = 0.5 * MAIN_SIZE_FOR_WINDOW[0]
         y = y * MAIN_SIZE_FOR_WINDOW[1]

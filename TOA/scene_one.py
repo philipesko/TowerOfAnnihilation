@@ -3,8 +3,9 @@ import os.path
 
 
 from main_window import CreateMainWindow
+from config import PATH_TO_RESOURCE
+from Tower import SpriteTower
 from config import PATH_TO_RESOURCE, GRID
-from sprites import SpriteTower
 from grid import Grid
 # from check_pos import CheckMousePos
 
@@ -33,10 +34,19 @@ class Scene1(CreateMainWindow):
 
     def create(self):
         """Main method from MainWindows reinitialization"""
-        CreateMainWindow.show_mouse_position_with_px(self)
         # Set background for scene 1
         self.surface.blit(self.main_menu_background, (0, 0))
         # temporary Create sprite
         sp = SpriteTower()
-        sp = sp.create_tower_1(surface=self.surface)
-        self.surface.blit(sp, (468, 295))
+        mouse = self.show_mouse_position_with_px()
+        # sp.set_param_tower()  # set parameters for tower in abstract class.
+        if 550 > mouse[0] > 500 and 550 > mouse[1] > 500:
+            sp.selected = True
+
+        sp.turn_tower(mouse)
+        sp.draw_radius()
+        sp.draw_tower()
+
+
+
+

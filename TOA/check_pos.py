@@ -1,11 +1,14 @@
-from config import CELL_SIZE, GRID
-# import pygame
+from config import MAIN_SIZE_FOR_WINDOW, CELL_SIZE, GRID
 
 
 class CheckMousePos:
 
     def mouse_coordinates(self, coordinates):
+        """
 
+        :param coordinates:
+        :return: coordinates
+        """
         print(f'Координаты курсора: {coordinates}')
         self.x = int(coordinates[0] / CELL_SIZE[0])
         self.y = int(coordinates[1] / CELL_SIZE[1])
@@ -15,12 +18,6 @@ class CheckMousePos:
                 print(f"Активна ли ячейка: {GRID[cell_name]['is_active']}")
                 print(f'Имя ячейки: {cell_name}')
                 print(f"Координаты ячейки: {GRID[cell_name]['coord']}")
-            # if cell_value['is_active'] is True:
-            #     pygame.mouse.set_cursor(*pygame.cursors.diamond)
-            # else:
-            #     # set standard cursor
-            #     pygame.mouse.set_cursor(*pygame.cursors.tri_left)
+        return coordinates
 
 
-if __name__ == '__main__':
-    CheckMousePos()

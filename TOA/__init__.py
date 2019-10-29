@@ -50,7 +50,7 @@ class MainLoop:
                     self._running = False
                     self.on_cleanup()
                 # if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            self.click_event.mouse_coordinates(pygame.mouse.get_pos())
+                self.click_event.mouse_coordinates(pygame.mouse.get_pos())
 
             pygame.display.flip()
             self.FPS.tick(60)
