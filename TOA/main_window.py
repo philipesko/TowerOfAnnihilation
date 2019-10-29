@@ -64,6 +64,7 @@ class CreateMainWindow:
         self.main_menu_greets_fonts = pygame.font.Font(os.path.join(PATH_TO_RESOURCE, 'font_forever.ttf'), 10)
         self.positiontext(f'Mouse position {pygame.mouse.get_pos()}', (770, 20))
         self.mouse = pygame.mouse.get_pos()
+        return self.mouse
 
     def main_menu_buttons(self):
         """Launching button drawing func and tracking mouse over action"""

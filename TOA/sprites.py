@@ -18,8 +18,8 @@ class SpriteTower(pygame.sprite.Sprite):
         self.level = None
         self.selected = False
         # temporary values:
-        self.range = 100
-        self.range_center = self.range - 24
+        self.range = 40
+        self.range_center = self.range - 25
 
     def set_param_tower(self, level_tower=2, x=500, y=500, scale_x=50, scale_y=50):
         """"Create tower 1 (draw, load image, check level up for tower, x and y start coordinates)

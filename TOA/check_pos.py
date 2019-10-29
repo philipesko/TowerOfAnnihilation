@@ -16,6 +16,7 @@ class CheckMousePos:
         :return: coordinates
         """
         mouse_coordinates = coordinates
+
         print(coordinates)
         return coordinates
 

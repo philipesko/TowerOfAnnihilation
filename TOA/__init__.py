@@ -21,8 +21,8 @@ class MainLoop:
         self.scene_one_call = Scene1()
         # self.sprite = SpriteTower()
         # Tracking mouse events
-        # self.click_event = CheckMousePos()
-
+        self.click_event = CheckMousePos()
+        # click_event = CheckMousePos()
 
     def on_cleanup(self):
         #Clear all. Need use before exit from game
@@ -44,7 +44,7 @@ class MainLoop:
 
                 if not self.CMW.isrunning:
                     self._running = False
-            click_event = CheckMousePos()
+
 
             for event in pygame.event.get():
                 """Quit from game if player pushes button ESC"""
@@ -56,7 +56,7 @@ class MainLoop:
                     self._switch_scene = True
 
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                    click_event.mouse_coordinates(pygame.mouse.get_pos())
+                    self.click_event.mouse_coordinates(pygame.mouse.get_pos())
   
             pygame.display.update()
             self.FPS.tick(60)
