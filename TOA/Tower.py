@@ -16,7 +16,7 @@ class SpriteTower(pygame.sprite.Sprite):
         self.y = None
         self.surface = SURFACE
         self.level = None
-        self.selected = False
+        self.selected = False  # need change this value for show radius damage
         # temporary values:
         self.range = 40
         self.range_center = self.range - 25
