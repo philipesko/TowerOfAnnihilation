@@ -7,7 +7,7 @@ from config import PATH_TO_RESOURCE
 from Tower import SpriteTower
 from config import PATH_TO_RESOURCE, GRID
 from grid import Grid
-# from check_pos import CheckMousePos
+from check_pos import CheckMousePos
 
 
 class Scene1(CreateMainWindow):
@@ -46,6 +46,28 @@ class Scene1(CreateMainWindow):
         sp.turn_tower(mouse)
         sp.draw_radius()
         sp.draw_tower()
+
+        sp_two = SpriteTower(x=600, y=600)
+        if 650 > mouse[0] > 600 and 650 > mouse[1] > 600:
+            sp_two.selected = True
+
+        sp_two.turn_tower(mouse)
+        sp_two.draw_radius()
+        sp_two.draw_tower()
+
+        for self.click in pygame.event.get():
+            if self.click.type == pygame.MOUSEBUTTONDOWN and self.click.button == 1:
+                try:
+                    check = CheckMousePos()
+                    coord = check.get_cell_coordinate(mouse)
+                    spite_tower = SpriteTower(x=coord[0], y=coord[1])
+                    spite_tower.draw_radius()
+                    spite_tower.draw_tower()
+                except:
+                    print('Not True')
+
+
+
 
 
 
