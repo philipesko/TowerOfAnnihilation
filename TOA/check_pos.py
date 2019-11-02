@@ -27,3 +27,4 @@ class CheckMousePos:
         cell = f'{x}:{y}'
         if GRID[cell]['is_active']:
             return GRID[cell]['coord']
+

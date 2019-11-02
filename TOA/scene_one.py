@@ -20,6 +20,10 @@ class Scene1(CreateMainWindow):
         # Defining a grid
         self.grid_class = Grid()
         self.grid = self.grid_class.define_grid()
+        # Setting active cells for towers
+        self.active_cells_scene1 = ['6:3', '9:3', '12:3', '8:5', '11:5', '13:5', '9:6', '10:6', '11:6', '13:6',
+                                    '11:7', '4:8', '6:8', '11:9', '2:10', '4:10', '7:10', '5:12', '8:12']
+        self.grid_class.active_cells(self.active_cells_scene1)
         # Tracking mouse events
         # self.click_event = CheckMousePos()
 
@@ -27,10 +31,6 @@ class Scene1(CreateMainWindow):
         self.main_menu_greets_position = None
         self._resource_path = os.path.join(PATH_TO_RESOURCE, 'maps')
         self.background = self.main_menu_background = pygame.image.load(os.path.join(self._resource_path, 'Map1.png'))
-        # Setting active cells for towers
-        self.active_cells_scene1 = ['6:3', '9:3', '12:3', '8:5', '11:5', '13:5', '9:6', '10:6', '11:6', '13:6',
-                                    '11:7', '4:8', '6:8', '11:9', '2:10', '4:10', '7:10', '5:12', '8:12']
-        self.grid_class.active_cells(self.active_cells_scene1)
 
     def create(self):
         """Main method from MainWindows reinitialization"""
