@@ -29,7 +29,6 @@ class Grid:
             item['is_active'] = False
             item['towerlevel'] = 0
         self.fill_coords(self.x, self.y, 0)
-        return GRID
 
     def define_grid(self):
         '''
@@ -61,8 +60,8 @@ class Grid:
         Making some cells active for particular level
         '''
         self.cell_list = cell_list
-        for i in self.cell_list:
-            GRID[i]['is_active'] = True
+        for cell_name in self.cell_list:
+            GRID[cell_name]['is_active'] = True
         return GRID
 
 

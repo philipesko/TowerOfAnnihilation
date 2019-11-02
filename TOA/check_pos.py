@@ -19,5 +19,3 @@ class CheckMousePos:
                 print(f'Имя ячейки: {cell_name}')
                 print(f"Координаты ячейки: {GRID[cell_name]['coord']}")
         return coordinates
-
-
