@@ -1,25 +1,29 @@
-from grid import Grid
-from config import CELL_SIZE
+from config import MAIN_SIZE_FOR_WINDOW, CELL_SIZE, GRID
 
 
 class CheckMousePos:
 
-    def __init__(self):
-
-        self.grid = Grid()
-        self.grid = self.grid.define_grid()
-
     def mouse_coordinates(self, coordinates):
+        """
 
-        print(coordinates)
+        :param coordinates:
+        :return: coordinates
+        """
+        print(f'Координаты курсора: {coordinates}')
         self.x = int(coordinates[0] / CELL_SIZE[0])
         self.y = int(coordinates[1] / CELL_SIZE[1])
         self.cell = f'{self.x}:{self.y}'
-        for i in self.grid.keys():
-            if i == self.cell:
-                print(self.grid[i]['is_active'])
-                print(i)
+        for cell_name, cell_value in GRID.items():
+            if cell_name == self.cell:
+                print(f"Активна ли ячейка: {GRID[cell_name]['is_active']}")
+                print(f'Имя ячейки: {cell_name}')
+                print(f"Координаты ячейки: {GRID[cell_name]['coord']}")
+        return coordinates
 
+    def get_cell_coordinate(self, mouse_coordinates):
 
-if __name__ == '__main__':
-    CheckMousePos()
+        x = int(mouse_coordinates[0] / CELL_SIZE[0])
+        y = int(mouse_coordinates[1] / CELL_SIZE[1])
+        cell = f'{x}:{y}'
+        if GRID[cell]['is_active']:
+            return GRID[cell]['coord']

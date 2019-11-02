@@ -12,13 +12,9 @@ class CreateMainWindow:
 
     def __init__(self):
 
-        # self._current_path = os.path.dirname(__file__)  # Where your .py file is located
-        # PATH_TO_RESOURCE = os.path.join(self._current_path, 'resources')
-        # PATH_TO_RESOURCE = os.path.join(self._current_path, 'resources')
         self._project_name = NAME_PROJECT
         self.isrunning = True
         self.switch_scene = False
-        # self._buttons_start_pos = 0.35
 
         # Size of a window in px
         # self.size = width, height
@@ -41,6 +37,8 @@ class CreateMainWindow:
     def positiontext(self, text, position):
         """
         Positioning Greetings text and drawing it
+        :param text:
+        :param position:
         """
         # draw text with team fonts on active window
         text_position = self.main_menu_greets_fonts.render(text, 2, (207, 204, 127))
@@ -63,6 +61,7 @@ class CreateMainWindow:
         self.main_menu_greets_fonts = pygame.font.Font(os.path.join(PATH_TO_RESOURCE, 'font_forever.ttf'), 10)
         self.positiontext(f'Mouse position {pygame.mouse.get_pos()}', (770, 20))
         self.mouse = pygame.mouse.get_pos()
+        return self.mouse
 
     def main_menu_buttons(self):
         """Launching button drawing func and tracking mouseover action"""
@@ -82,6 +81,8 @@ class CreateMainWindow:
 
             for self.click in pygame.event.get():
                 if self.click.type == pygame.MOUSEBUTTONDOWN and self.click.button == 1:
+                    self.surface.fill((30, 30, 30))
+                    pygame.mouse.set_cursor(*pygame.cursors.tri_left)
                     self.switch_scene = True
 
         elif button_exit_position[0] + button_exit_position[2] > self.mouse[0] > button_exit_position[0] and\
@@ -101,6 +102,9 @@ class CreateMainWindow:
     def draw_button(self, button_name, y):
         '''
         Calculating buttons position and drawing them
+        :param button_name:
+        :param y:
+        :return:
         '''
         x = 0.5 * MAIN_SIZE_FOR_WINDOW[0]
         y = y * MAIN_SIZE_FOR_WINDOW[1]
