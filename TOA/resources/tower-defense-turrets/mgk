@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for var in $(ls)
+    do $(convert $var -resize 50x50 -quality 100 $var)
+done
