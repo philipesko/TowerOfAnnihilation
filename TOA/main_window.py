@@ -16,10 +16,6 @@ class CreateMainWindow:
         self.isrunning = True
         self.switch_scene = False
 
-        # Size of a window in px
-        # self.size = width, height
-        # self.surface = pygame.display.set_mode(MAIN_SIZE_FOR_WINDOW)
-
         # Load Fonts, background image and position main text
         self.main_menu_greets_fonts = pygame.font.Font(os.path.join(PATH_TO_RESOURCE, 'font_forever.ttf'), 28)
         self.main_menu_greets = self.main_menu_greets_fonts.render(f'Welcome to the {self._project_name}', 1,
@@ -69,8 +65,6 @@ class CreateMainWindow:
                                                  MAIN_MENU_BUTTON['button_start']['y'])
         button_exit_position = self.draw_button(MAIN_MENU_BUTTON['button_exit']['image'],
                                                 MAIN_MENU_BUTTON['button_exit']['y'])
-        # print('button_start_position: ', button_start_position)
-        # print('button_exit_position: ', button_exit_position)
 
         if button_start_position[0] + button_start_position[2] > self.mouse[0] > button_start_position[0] and \
                 button_start_position[1] + button_start_position[3] > self.mouse[1] > button_start_position[1]:

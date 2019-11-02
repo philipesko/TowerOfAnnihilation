@@ -8,6 +8,7 @@ from Tower import SpriteTower
 from config import PATH_TO_RESOURCE, SURFACE
 from grid import Grid
 from check_pos import CheckMousePos
+from creep import Creep
 
 
 class Scene1(CreateMainWindow):
@@ -36,6 +37,7 @@ class Scene1(CreateMainWindow):
         """Main method from MainWindows reinitialization"""
         # Set background for scene 1
         self.surface.blit(self.main_menu_background, (0, 0))
+        self.creep = Creep()
         # temporary Create sprite
         # sp = SpriteTower()
         # mouse = self.show_mouse_position_with_px()

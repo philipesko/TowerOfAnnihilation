@@ -23,6 +23,8 @@ class MainLoop:
         # Tracking mouse events
         self.click_event = CheckMousePos()
         self.tower_group = []
+        # Initial health
+        self.health_left = 20
 
     def on_cleanup(self):
         # Clear all. Need use before exit from game
@@ -51,7 +53,7 @@ class MainLoop:
                     self._running = False
                     self.on_cleanup()
                 # if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                # self.click_event.mouse_coordinates(pygame.mouse.get_pos())
+                self.click_event.mouse_coordinates(pygame.mouse.get_pos())
 
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and \
                         self.click_event.get_cell_coordinate(pygame.mouse.get_pos()):
@@ -71,7 +73,7 @@ class MainLoop:
             # self.tower_group.update(self, mouse[0], mouse[1])
             # self.tower_group.draw(self)
             list(map(lambda x:x.draw(), self.tower_group))
-            pygame.display.flip()
+            pygame.display.update()
             self.FPS.tick(30)
 
 

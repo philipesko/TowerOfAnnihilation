@@ -1,5 +1,4 @@
 from config import MAIN_SIZE_FOR_WINDOW, CELL_SIZE, GRID
-# from scene_one import Scene1
 
 
 class Grid:
@@ -14,7 +13,6 @@ class Grid:
         self.y_cells_quantity = int(MAIN_SIZE_FOR_WINDOW[1] / self.y)
         # Generating grid
         self.define_grid()
-        print(GRID)
 
     def define_cell_list(self, x_cells_quantity, y_cells_quantity):
         """
@@ -29,7 +27,6 @@ class Grid:
             item['is_active'] = False
             item['towerlevel'] = 0
         self.fill_coords(self.x, self.y, 0)
-        return GRID
 
     def define_grid(self):
         '''
