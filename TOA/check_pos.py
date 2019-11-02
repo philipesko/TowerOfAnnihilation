@@ -25,6 +25,5 @@ class CheckMousePos:
         x = int(mouse_coordinates[0] / CELL_SIZE[0])
         y = int(mouse_coordinates[1] / CELL_SIZE[1])
         cell = f'{x}:{y}'
-        for cell_name, cell_value in GRID.items():
-            if cell_name == self.cell and GRID[cell_name]['is_active'] == True:
-                return GRID[cell_name]['coord']
+        if GRID[cell]['is_active']:
+            return GRID[cell]['coord']

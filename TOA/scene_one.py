@@ -5,7 +5,7 @@ import os.path
 from main_window import CreateMainWindow
 from config import PATH_TO_RESOURCE
 from Tower import SpriteTower
-from config import PATH_TO_RESOURCE, GRID
+from config import PATH_TO_RESOURCE, SURFACE
 from grid import Grid
 from check_pos import CheckMousePos
 
@@ -15,7 +15,7 @@ class Scene1(CreateMainWindow):
     def __init__(self):
         """Main method MainWindow class reinitialization for scene 1(level1)"""
         super(CreateMainWindow, self).__init__()
-
+        self.tower_group = pygame.sprite.Group()
         # CreateMainWindow.__init__(self)
         # Defining a grid
         self.grid_class = Grid()
@@ -37,34 +37,35 @@ class Scene1(CreateMainWindow):
         # Set background for scene 1
         self.surface.blit(self.main_menu_background, (0, 0))
         # temporary Create sprite
-        sp = SpriteTower()
-        mouse = self.show_mouse_position_with_px()
+        # sp = SpriteTower()
+        # mouse = self.show_mouse_position_with_px()
         # sp.set_param_tower()  # set parameters for tower in abstract class.
-        if 550 > mouse[0] > 500 and 550 > mouse[1] > 500:
-            sp.selected = True
+        # if 550 > mouse[0] > 500 and 550 > mouse[1] > 500:
+        #     sp.selected = True
+        #
+        #
+        # # sp.draw(mouse)
+        #
+        # sp_two = SpriteTower(x=600, y=600)
+        # if 650 > mouse[0] > 600 and 650 > mouse[1] > 600:
+        #     sp_two.selected = True
 
-        sp.turn_tower(mouse)
-        sp.draw_radius()
-        sp.draw_tower()
+        # sp_two.turn_tower(mouse)
+        # sp_two.draw()
 
-        sp_two = SpriteTower(x=600, y=600)
-        if 650 > mouse[0] > 600 and 650 > mouse[1] > 600:
-            sp_two.selected = True
-
-        sp_two.turn_tower(mouse)
-        sp_two.draw_radius()
-        sp_two.draw_tower()
-
-        for self.click in pygame.event.get():
-            if self.click.type == pygame.MOUSEBUTTONDOWN and self.click.button == 1:
-                try:
-                    check = CheckMousePos()
-                    coord = check.get_cell_coordinate(mouse)
-                    spite_tower = SpriteTower(x=coord[0], y=coord[1])
-                    spite_tower.draw_radius()
-                    spite_tower.draw_tower()
-                except:
-                    print('Not True')
+        # for self.click in pygame.event.get():
+        #     if self.click.type == pygame.MOUSEBUTTONDOWN and self.click.button == 1:
+        #         try:
+        #             check = CheckMousePos()
+        #             coord = check.get_cell_coordinate(mouse)
+        #             spite_tower = SpriteTower(x=coord[0], y=coord[1])
+        #             self.tower_group.add(spite_tower)
+        #             print('True')
+        #         except:
+        #             print('Not True')
+        #
+        # self.tower_group.update(SURFACE, mouse)
+        # self.tower_group.draw(SURFACE)
 
 
 
