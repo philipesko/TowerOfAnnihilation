@@ -39,14 +39,15 @@ class SpriteTower(pygame.sprite.Sprite):
         self.enemy_position = enemy_pos
         self.turn_tower()
 
-
     def draw(self):
         self.surface.blit(self.image, self.rect)
         self.draw_radius()
 
     def draw_radius(self):
+        """
+        Draw radius for Tower.
+        """
         if self.selected:
-            # draw range circle
             surface = pygame.Surface((self.range * 4, self.range * 4), pygame.SRCALPHA, 32)
             pygame.draw.circle(surface, (128, 128, 128, 100), (self.range, self.range), self.range, 0)
 
@@ -65,9 +66,10 @@ class SpriteTower(pygame.sprite.Sprite):
             self.angle = 0
         # r - radius  damage
         if r <= 100:
-            self.selected = True
             self.image = pygame.transform.rotate(self.orig_image, -self.angle - 90)
             self.rect = self.image.get_rect(center=self.rect.center)
+        if r <= 30:
+            self.selected = True
         else:
             self.selected = False
-            # self.image = self.rect
+

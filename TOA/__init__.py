@@ -4,6 +4,7 @@ from main_window import CreateMainWindow
 from check_pos import CheckMousePos
 from scene_one import Scene1
 from Tower import SpriteTower
+from config import GRID
 from config import SURFACE
 
 
@@ -59,6 +60,7 @@ class MainLoop:
                         coord = self.click_event.get_cell_coordinate(
                             self.click_event.get_cell_coordinate(pygame.mouse.get_pos()))
                         spite_tower = SpriteTower(x=coord[0], y=coord[1])
+                        # GRID[coord]['is_active'] = False
                         self.tower_group.append(spite_tower)
                         print('True')
                     except:
