@@ -4,6 +4,7 @@ from main_window import CreateMainWindow
 from check_pos import CheckMousePos
 from scene_one import Scene1
 from Tower import SpriteTower
+from config import GRID
 from config import SURFACE
 
 
@@ -19,7 +20,6 @@ class MainLoop:
         self.FPS = pygame.time.Clock()
         self.CMW = CreateMainWindow()
         self.scene_one_call = Scene1()
-        # self.sprite = SpriteTower()
         # Tracking mouse events
         self.click_event = CheckMousePos()
         self.tower_group = []
@@ -63,21 +63,18 @@ class MainLoop:
                         coord = self.click_event.get_cell_coordinate(
                             self.click_event.get_cell_coordinate(pygame.mouse.get_pos()))
                         spite_tower = SpriteTower(x=coord[0], y=coord[1])
+                        cell_name = self.click_event.get_cell_name(pygame.mouse.get_pos())
+                        GRID[cell_name]['is_active'] = False
                         self.tower_group.append(spite_tower)
-                        print('True')
+                        print('Tower added to group')
                     except:
-                        print('Not True')
+                        print('Not complete added tower to group')
 
             mouse = pygame.mouse.get_pos()
-            for x in self.tower_group:
-                x.update(mouse)
-            # list(map(lambda x:x.update(mouse), self.tower_group))
-            # self.tower_group.update(self, mouse[0], mouse[1])
-            # self.tower_group.draw(self)
-            list(map(lambda x:x.draw(), self.tower_group))
-            pygame.display.update()
+            list(map(lambda x: x.update(mouse), self.tower_group))
+            list(map(lambda x: x.draw(), self.tower_group))
+            pygame.display.flip()
             self.FPS.tick(30)
-
 
 
 if __name__ == "__main__":

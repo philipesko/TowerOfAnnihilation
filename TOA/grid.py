@@ -17,6 +17,8 @@ class Grid:
     def define_cell_list(self, x_cells_quantity, y_cells_quantity):
         """
         Generating a grid
+        :param x_cells_quantity:
+        :param y_cells_quantity:
         """
         # Making dictionary
         for y_cell_number in range(y_cells_quantity):
@@ -31,6 +33,7 @@ class Grid:
     def define_grid(self):
         '''
         Defining a grid
+        :return:
         '''
         GRID = self.define_cell_list(self.x_cells_quantity, self.y_cells_quantity)
         return GRID
@@ -38,6 +41,9 @@ class Grid:
     def fill_coords(self, x, y, start_pos):
         '''
         Filling grid with coordinates
+        :param x:
+        :param y:
+        :param start_pos:
         '''
         y -= 58
         carriage = start_pos
@@ -56,10 +62,12 @@ class Grid:
     def active_cells(self, cell_list):
         '''
         Making some cells active for particular level
+        :param cell_list:
+        :return:
         '''
         self.cell_list = cell_list
-        for i in self.cell_list:
-            GRID[i]['is_active'] = True
+        for cell_name in self.cell_list:
+            GRID[cell_name]['is_active'] = True
         return GRID
 
 

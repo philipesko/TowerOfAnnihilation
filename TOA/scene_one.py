@@ -22,25 +22,26 @@ class Scene1(CreateMainWindow):
         # Defining a grid
         self.grid_class = Grid()
         self.grid = self.grid_class.define_grid()
-        self.creep = Creep()
-        # Initial health
-        self.health_left = 2
-
-        self.main_menu_greets = None
-        self.main_menu_greets_position = None
-        self._resource_path = os.path.join(PATH_TO_RESOURCE, 'maps')
-        self.background = self.main_menu_background = pygame.image.load(os.path.join(self._resource_path, 'Map1.png'))
         # Setting active cells for towers
         self.active_cells_scene1 = ['6:3', '9:3', '12:3', '8:5', '11:5', '13:5', '9:6', '10:6', '11:6', '13:6',
                                     '11:7', '4:8', '6:8', '11:9', '2:10', '4:10', '7:10', '5:12', '8:12']
         self.grid_class.active_cells(self.active_cells_scene1)
+        self.creep = Creep()
+        # Initial health
+        self.health_left = 2
+        self.main_menu_greets = None
+        self.main_menu_greets_position = None
+        self._resource_path = os.path.join(PATH_TO_RESOURCE, 'maps')
+        self.background = self.main_menu_background = pygame.image.load(os.path.join(self._resource_path, 'Map1.png'))
 
     def create(self):
-        """Main method from MainWindows reinitialization"""
+        """Main method from MainWindows reinitialization
+        :rtype: object
+        """
         # Set background for scene 1
         self.surface.blit(self.main_menu_background, (0, 0))
         self.show_mouse_position_with_px()
-    
+
     def show_mouse_position_with_px(self):
         """
         Drawing health status
