@@ -1,10 +1,11 @@
 import pygame
 
-
 from main_window import CreateMainWindow
 from check_pos import CheckMousePos
 from scene_one import Scene1
-# from sprites import SpriteTower
+from Tower import SpriteTower
+from config import GRID
+from config import SURFACE
 
 
 class MainLoop:
@@ -22,6 +23,7 @@ class MainLoop:
         # self.sprite = SpriteTower()
         # Tracking mouse events
         self.click_event = CheckMousePos()
+        self.tower_group = []
 
     def on_cleanup(self):
         # Clear all. Need use before exit from game
@@ -50,8 +52,24 @@ class MainLoop:
                     self._running = False
                     self.on_cleanup()
                 # if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                self.click_event.mouse_coordinates(pygame.mouse.get_pos())
+                # self.click_event.mouse_coordinates(pygame.mouse.get_pos())
 
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and \
+                        self.click_event.get_cell_coordinate(pygame.mouse.get_pos()):
+                    try:
+                        coord = self.click_event.get_cell_coordinate(
+                            self.click_event.get_cell_coordinate(pygame.mouse.get_pos()))
+                        spite_tower = SpriteTower(x=coord[0], y=coord[1])
+                        cell_name = self.click_event.get_cell_name(pygame.mouse.get_pos())
+                        GRID[cell_name]['is_active'] = False
+                        self.tower_group.append(spite_tower)
+                        print('Tower added to group')
+                    except:
+                        print('Not complete added tower to group')
+
+            mouse = pygame.mouse.get_pos()
+            list(map(lambda x: x.update(mouse), self.tower_group))
+            list(map(lambda x: x.draw(), self.tower_group))
             pygame.display.flip()
             self.FPS.tick(60)
 

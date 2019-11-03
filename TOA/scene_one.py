@@ -5,8 +5,9 @@ import os.path
 from main_window import CreateMainWindow
 from config import PATH_TO_RESOURCE
 from Tower import SpriteTower
+from config import PATH_TO_RESOURCE, SURFACE
 from grid import Grid
-# from check_pos import CheckMousePos
+from check_pos import CheckMousePos
 
 
 class Scene1(CreateMainWindow):
@@ -14,7 +15,7 @@ class Scene1(CreateMainWindow):
     def __init__(self):
         """Main method MainWindow class reinitialization for scene 1(level1)"""
         super(CreateMainWindow, self).__init__()
-
+        self.tower_group = pygame.sprite.Group()
         # CreateMainWindow.__init__(self)
         # Defining a grid
         self.grid_class = Grid()
@@ -32,19 +33,15 @@ class Scene1(CreateMainWindow):
         self.background = self.main_menu_background = pygame.image.load(os.path.join(self._resource_path, 'Map1.png'))
 
     def create(self):
-        """Main method from MainWindows reinitialization"""
+        """Main method from MainWindows reinitialization
+        :rtype: object
+        """
         # Set background for scene 1
         self.surface.blit(self.main_menu_background, (0, 0))
-        # temporary Create sprite
-        sp = SpriteTower()
-        mouse = self.show_mouse_position_with_px()
-        # sp.set_param_tower()  # set parameters for tower in abstract class.
-        if 550 > mouse[0] > 500 and 550 > mouse[1] > 500:
-            sp.selected = True
 
-        sp.turn_tower(mouse)
-        sp.draw_radius()
-        sp.draw_tower()
+
+
+
 
 
 
