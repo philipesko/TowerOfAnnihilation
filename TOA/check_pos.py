@@ -5,7 +5,7 @@ class CheckMousePos:
 
     def mouse_coordinates(self, coordinates):
         """
-
+        This method show information from GRID to console
         :param coordinates:
         :return: coordinates
         """
@@ -21,7 +21,11 @@ class CheckMousePos:
         return coordinates
 
     def get_cell_coordinate(self, mouse_coordinates):
-
+        """
+        This method for return cell coordinate from GRID for mouse coordinate
+        :param mouse_coordinates:
+        :return: cell coordinate from GRID
+        """
         x = int(mouse_coordinates[0] / CELL_SIZE[0])
         y = int(mouse_coordinates[1] / CELL_SIZE[1])
         cell = f'{x}:{y}'
@@ -29,6 +33,11 @@ class CheckMousePos:
             return GRID[cell]['coord']
 
     def get_cell_name(self, mouse_coordinates):
+        """
+        This method return cell name for GRID.
+        :param mouse_coordinates:
+        :return: cell name in GRID
+        """
         x = int(mouse_coordinates[0] / CELL_SIZE[0])
         y = int(mouse_coordinates[1] / CELL_SIZE[1])
         cell = f'{x}:{y}'
