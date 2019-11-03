@@ -28,3 +28,8 @@ class CheckMousePos:
         if GRID[cell]['is_active']:
             return GRID[cell]['coord']
 
+    def get_cell_name(self, mouse_coordinates):
+        x = int(mouse_coordinates[0] / CELL_SIZE[0])
+        y = int(mouse_coordinates[1] / CELL_SIZE[1])
+        cell = f'{x}:{y}'
+        return cell
