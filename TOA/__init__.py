@@ -34,13 +34,14 @@ class MainLoop:
     def run(self):
         """Main loop"""
         while self._running:
-            # switch between windows if flag _switch_scene is true:
+            # Start a new level
             if self._switch_scene:
-                create_scene_one_call = self.scene_one_call.create()
-                # TMP create sprite.
-                # self.sprite.create_tower_1()
+                # Create a new level
+                self.scene_one_call.create()
+                # Release the craken!
+                self.scene_one_call.move_creep()
             else:
-                create_main_window = self.CMW.create()
+                self.CMW.create()
 
                 if not self.CMW.isrunning:
                     self._running = False

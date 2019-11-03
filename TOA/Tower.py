@@ -29,7 +29,7 @@ class SpriteTower(pygame.sprite.Sprite):
         self.orig_image = self.image
         self.rect = self.image.get_rect(center=self.pos)
         self.enemy_position = 0, 0
-        self.turn_tower()
+        # self.turn_tower()
         # self.image = pygame.transform.scale(self.image, (scale_x, scale_y))
 
     def update(self, enemy_pos):

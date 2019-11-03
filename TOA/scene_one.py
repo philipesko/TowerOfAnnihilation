@@ -18,11 +18,11 @@ class Scene1(CreateMainWindow):
         super(CreateMainWindow, self).__init__()
         self.tower_group = pygame.sprite.Group()
         # CreateMainWindow.__init__(self)
+
         # Defining a grid
         self.grid_class = Grid()
         self.grid = self.grid_class.define_grid()
-        # Tracking mouse events
-        # self.click_event = CheckMousePos()
+        self.creep = Creep()
 
         self.main_menu_greets = None
         self.main_menu_greets_position = None
@@ -37,41 +37,6 @@ class Scene1(CreateMainWindow):
         """Main method from MainWindows reinitialization"""
         # Set background for scene 1
         self.surface.blit(self.main_menu_background, (0, 0))
-        self.creep = Creep()
-        # temporary Create sprite
-        # sp = SpriteTower()
-        # mouse = self.show_mouse_position_with_px()
-        # sp.set_param_tower()  # set parameters for tower in abstract class.
-        # if 550 > mouse[0] > 500 and 550 > mouse[1] > 500:
-        #     sp.selected = True
-        #
-        #
-        # # sp.draw(mouse)
-        #
-        # sp_two = SpriteTower(x=600, y=600)
-        # if 650 > mouse[0] > 600 and 650 > mouse[1] > 600:
-        #     sp_two.selected = True
 
-        # sp_two.turn_tower(mouse)
-        # sp_two.draw()
-
-        # for self.click in pygame.event.get():
-        #     if self.click.type == pygame.MOUSEBUTTONDOWN and self.click.button == 1:
-        #         try:
-        #             check = CheckMousePos()
-        #             coord = check.get_cell_coordinate(mouse)
-        #             spite_tower = SpriteTower(x=coord[0], y=coord[1])
-        #             self.tower_group.add(spite_tower)
-        #             print('True')
-        #         except:
-        #             print('Not True')
-        #
-        # self.tower_group.update(SURFACE, mouse)
-        # self.tower_group.draw(SURFACE)
-
-
-
-
-
-
-
+    def move_creep(self):
+        self.creep.move()
