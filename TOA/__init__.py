@@ -23,8 +23,6 @@ class MainLoop:
         # Tracking mouse events
         self.click_event = CheckMousePos()
         self.tower_group = []
-        # Initial health
-        self.health_left = 20
 
     def on_cleanup(self):
         # Clear all. Need use before exit from game
@@ -40,6 +38,9 @@ class MainLoop:
                 self.scene_one_call.create()
                 # Release the craken!
                 self.scene_one_call.move_creep()
+                if self.scene_one_call.health_left <= 0:
+                    print('        Bad luck, fist fuck...')
+                    self._running = False
             else:
                 self.CMW.create()
 
