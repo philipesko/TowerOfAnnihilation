@@ -35,6 +35,7 @@ class SpriteTower(pygame.sprite.Sprite):
     def update(self, enemy_pos):
         """
         Method update for tower sprites.
+        :param enemy_pos:
         """
         self.enemy_position = enemy_pos
         self.turn_tower()
