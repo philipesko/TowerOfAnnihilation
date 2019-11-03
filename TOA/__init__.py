@@ -5,7 +5,6 @@ from check_pos import CheckMousePos
 from scene_one import Scene1
 from Tower import SpriteTower
 from config import GRID
-from config import SURFACE
 
 
 class MainLoop:
