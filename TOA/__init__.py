@@ -20,7 +20,6 @@ class MainLoop:
         self.FPS = pygame.time.Clock()
         self.CMW = CreateMainWindow()
         self.scene_one_call = Scene1()
-        # self.sprite = SpriteTower()
         # Tracking mouse events
         self.click_event = CheckMousePos()
         self.tower_group = []
@@ -33,13 +32,17 @@ class MainLoop:
     def run(self):
         """Main loop"""
         while self._running:
-            # switch between windows if flag _switch_scene is true:
+            # Start a new level
             if self._switch_scene:
-                create_scene_one_call = self.scene_one_call.create()
-                # TMP create sprite.
-                # self.sprite.create_tower_1()
+                # Create a new level
+                self.scene_one_call.create()
+                # Release the craken!
+                self.scene_one_call.move_creep()
+                if self.scene_one_call.health_left <= 0:
+                    print('        Bad luck, fist fuck...')
+                    self._running = False
             else:
-                create_main_window = self.CMW.create()
+                self.CMW.create()
 
                 if not self.CMW.isrunning:
                     self._running = False
@@ -71,7 +74,7 @@ class MainLoop:
             list(map(lambda x: x.update(mouse), self.tower_group))
             list(map(lambda x: x.draw(), self.tower_group))
             pygame.display.flip()
-            self.FPS.tick(60)
+            self.FPS.tick(30)
 
 
 if __name__ == "__main__":
