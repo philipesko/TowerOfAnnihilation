@@ -55,7 +55,7 @@ class MainLoop:
                     self._running = False
                     self.on_cleanup()
                 # if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                self.click_event.mouse_coordinates(pygame.mouse.get_pos())
+                # self.click_event.mouse_coordinates(pygame.mouse.get_pos())
 
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and \
                         self.click_event.get_cell_coordinate(pygame.mouse.get_pos()):

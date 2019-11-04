@@ -28,7 +28,7 @@ class Scene1(CreateMainWindow):
         self.grid_class.active_cells(self.active_cells_scene1)
         self.creep = Creep()
         # Initial health
-        self.health_left = 2
+        self.health_left = 20
         self.main_menu_greets = None
         self.main_menu_greets_position = None
         self._resource_path = os.path.join(PATH_TO_RESOURCE, 'maps')

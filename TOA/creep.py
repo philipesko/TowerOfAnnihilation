@@ -13,7 +13,6 @@ class Creep(pygame.sprite.Sprite):
                       GRID['10:8']['coord'], GRID['10:9']['coord'],
                       GRID['3:9']['coord'], GRID['3:11']['coord'],
                       GRID['10:11']['coord'], [GRID['10:11']['coord'][0], 802]]
-
         self.target_point = 1
         self.offset()  # Need to handle grid change in future
         self.creep_x = self.route[0][0]
@@ -37,36 +36,27 @@ class Creep(pygame.sprite.Sprite):
         self.animate()  # Animating creep
 
         # Let's move!
-        # Current position == self.creep_x, self.creep_y
-        # Target position == self.target_x, self.target_y
         self.target_x, self.target_y = self.route[self.target_point]
         # Moving down
         if self.target_x - self.creep_x == 0:
-            print('moving down')
             self.blue_creep1_origin = pygame.transform.rotate(self.blue_creep1_origin, -90)
             self.creep_y += self.speed
             if self.creep_y >= self.target_y:
-                print('moving down_except')
                 self.move_to_the_next()
         # Moving right
-        if self.target_y - self.creep_y == 0:
-            print('moving right')
+        if self.target_y - self.creep_y == 0 and self.creep_x - self.target_x <= 0:
             self.creep_x += self.speed
             if self.creep_x >= self.target_x:
-                print('moving right_except')
                 self.move_to_the_next()
         # Moving left
         if self.target_x - self.creep_x <= 0 and self.creep_y == self.target_y:
-            print('moving left')
             self.blue_creep1_origin = pygame.transform.rotate(self.blue_creep1_origin, 180)
             self.creep_x -= self.speed
             if self.creep_x <= self.target_x:
-                print('moving left_except')
                 self.move_to_the_next()
 
+        print(self.creep_x, self.creep_y)
         self.surface.blit(self.blue_creep1_origin, (self.creep_x, self.creep_y))
-
-        print(self.creep_x, self.creep_y, self.route[self.target_point])
 
         # If creep left screen reset coordinates, switch damage flag to True
         if self.creep_y >= 808:
