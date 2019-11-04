@@ -1,5 +1,4 @@
 from config import MAIN_SIZE_FOR_WINDOW, CELL_SIZE, GRID
-# from scene_one import Scene1
 
 
 class Grid:
