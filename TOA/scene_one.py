@@ -5,7 +5,7 @@ import os.path
 from main_window import CreateMainWindow
 from config import PATH_TO_RESOURCE
 from Tower import SpriteTower
-from config import PATH_TO_RESOURCE, SURFACE
+from config import PATH_TO_RESOURCE, SURFACE, GRID
 from grid import Grid
 from check_pos import CheckMousePos
 
@@ -17,6 +17,7 @@ class Scene1(CreateMainWindow):
         super(CreateMainWindow, self).__init__()
         self.tower_group = pygame.sprite.Group()
         # CreateMainWindow.__init__(self)
+        self.game_exit = False
         # Defining a grid
         self.grid_class = Grid()
         self.grid = self.grid_class.define_grid()
@@ -24,8 +25,8 @@ class Scene1(CreateMainWindow):
         self.active_cells_scene1 = ['6:3', '9:3', '12:3', '8:5', '11:5', '13:5', '9:6', '10:6', '11:6', '13:6',
                                     '11:7', '4:8', '6:8', '11:9', '2:10', '4:10', '7:10', '5:12', '8:12']
         self.grid_class.active_cells(self.active_cells_scene1)
-        # Tracking mouse events
-        # self.click_event = CheckMousePos()
+        # pygame.mixer.music.load(os.path.join(os.path.dirname(__file__), 'background_music.ogg'))
+        # pygame.mixer.music.play()
 
         self.main_menu_greets = None
         self.main_menu_greets_position = None
@@ -39,10 +40,13 @@ class Scene1(CreateMainWindow):
         # Set background for scene 1
         self.surface.blit(self.main_menu_background, (0, 0))
 
+    def show_mouse_position_with_px(self, health):
+        """
+        Drawing health status
+        """
+        self.health_left = health
+        self.main_menu_greets_fonts = pygame.font.Font(os.path.join(PATH_TO_RESOURCE, 'font_forever.ttf'), 10)
+        self.positiontext(f'Health left: {self.health_left}', (10, 10))
 
-
-
-
-
-
-
+    def draw_danger(self, health_level):
+        pass
