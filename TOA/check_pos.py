@@ -29,8 +29,11 @@ class CheckMousePos:
         x = int(mouse_coordinates[0] / CELL_SIZE[0])
         y = int(mouse_coordinates[1] / CELL_SIZE[1])
         cell = f'{x}:{y}'
-        if GRID[cell]['is_active']:
-            return GRID[cell]['coord']
+        try:
+            if GRID[cell]['is_active']:
+                return GRID[cell]['coord']
+        except:
+            print(f'Cell {cell} not found ')
 
     def get_cell_name(self, mouse_coordinates):
         """
@@ -38,7 +41,9 @@ class CheckMousePos:
         :param mouse_coordinates:
         :return: cell name in GRID
         """
+
         x = int(mouse_coordinates[0] / CELL_SIZE[0])
         y = int(mouse_coordinates[1] / CELL_SIZE[1])
         cell = f'{x}:{y}'
+        print('Cell not found')
         return cell
