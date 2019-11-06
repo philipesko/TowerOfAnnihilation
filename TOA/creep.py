@@ -5,16 +5,16 @@ from config import PATH_TO_RESOURCE, SURFACE, GRID
 
 class Creep(pygame.sprite.Sprite):
 
-    def __init__(self):
+    def __init__(self, start_x=0, start_y=-106):
 
         self.surface = SURFACE
-        self.route = [[GRID['7:0']['coord'][0], -106], GRID['7:4']['coord'],
+        self.route = [[GRID['7:0']['coord'][start_x], start_y], GRID['7:4']['coord'],
                       GRID['12:4']['coord'], GRID['12:8']['coord'],
                       GRID['10:8']['coord'], GRID['10:9']['coord'],
                       GRID['3:9']['coord'], GRID['3:11']['coord'],
                       GRID['10:11']['coord'], [GRID['10:11']['coord'][0], 802]]
         self.target_point = 1
-        self.offset()  # Need to handle grid change in future
+        # self.offset()  # Need to handle grid change in future
         self.creep_x = self.route[0][0]
         self.creep_y = self.route[0][1]
         self.creep_center = self.creep_x + 23, self.creep_y + 23
@@ -77,7 +77,7 @@ class Creep(pygame.sprite.Sprite):
             self.damage_done()
         self.creep_center = self.creep_x + 23, self.creep_y + 23
 
-        return self.creep_center
+        # return self.creep_center
 
     def move_to_the_next(self):
 

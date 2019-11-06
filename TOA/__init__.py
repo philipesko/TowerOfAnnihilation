@@ -23,10 +23,16 @@ class MainLoop:
         self.CMW = CreateMainWindow()
         self.scene_one_call = Scene1()
         self.creep = Creep()
+        self.creep1 = Creep(start_y=-150)
+        self.creep2 = Creep(start_y=-200)
+        self.creep3 = Creep(start_y=-250)
+        self.creep4 = Creep(start_y=-300)
+        self.creep5 = Creep(start_y=-350)
         # Tracking mouse events
         self.click_event = CheckMousePos()
         self.tower_group = []
-        self.creep_group = []
+        self.creep_group = [self.creep, self.creep1, self.creep2, self.creep3, self.creep4, self.creep5]
+        self.target = None
 
     def run(self):
         """Main loop"""
@@ -37,7 +43,17 @@ class MainLoop:
                 self.scene_one_call.create()
                 self.scene_one_call.show_mouse_position_with_px(self.health_left)
                 # Release the craken!
-                self.creep.move()
+
+
+                # self.creep_group.append(Creep(start_y=y-30))
+                # self.creep_group.append(Creep(start_y=y-60))
+                # self.creep_group.append(Creep(start_y=y-90))
+                # self.creep_group.append(Creep(start_y=y-120))
+
+                for enemy in self.creep_group:
+                    enemy.move()
+                # self.target = self.creep_group[0].creep_center
+
                 if self.creep.damage:
                     self.health_left -= 1
                     if self.health_left <= 0:
@@ -72,8 +88,13 @@ class MainLoop:
                     except:
                         print('Not complete added tower to group')
 
-            mouse = pygame.mouse.get_pos()
-            list(map(lambda x: x.update(self.creep.creep_center), self.tower_group))
+
+
+            for creepy in self.creep_group:
+                center = creepy.creep_center
+                list(map(lambda x: x.update(center), self.tower_group))
+            # list(map(lambda x: x.update(self.target), self.tower_group))
+            # list(map(lambda x: x.update(self.creep1.creep_center), self.tower_group))
             list(map(lambda x: x.draw(), self.tower_group))
             pygame.display.flip()
             self.FPS.tick(30)

@@ -31,6 +31,9 @@ class SpriteTower(pygame.sprite.Sprite):
         self.enemy_position = 0, 0
         # self.turn_tower()
         # self.image = pygame.transform.scale(self.image, (scale_x, scale_y))
+        self.in_range = False
+        self.enemy_closest = []
+        print(self.enemy_closest)
 
     def update(self, enemy_pos):
         """
@@ -59,17 +62,26 @@ class SpriteTower(pygame.sprite.Sprite):
         Method for turn the tower on angle
         :param enemy_position:
         """
-        center = pygame.math.Vector2(self.rect.center)
-        mouse_position = pygame.math.Vector2(self.enemy_position)
 
-        r, self.angle = (mouse_position - center).as_polar()
+        center = pygame.math.Vector2(self.rect.center)
+        enemy_position = pygame.math.Vector2(self.enemy_position)
+
+        r, self.angle = (enemy_position - center).as_polar()
         if self.angle >= 359:
             self.angle = 0
+
         # r - radius  damage
         if r <= 100:
-            self.image = pygame.transform.rotate(self.orig_image, -self.angle - 90)
-            self.rect = self.image.get_rect(center=self.rect.center)
-        if r <= 30:
-            self.selected = True
-        else:
-            self.selected = False
+            self.in_range = True
+            self.enemy_closest.append(self.enemy_position)
+
+            self.enemy_closest.sort()
+
+            self.enemy_closest = self.enemy_closest[::]
+
+            if len(self.enemy_closest) > 0 and self.in_range:
+                first_enemy = self.enemy_closest[0]
+                self.image = pygame.transform.rotate(self.orig_image, -self.angle - 90)
+                self.rect = self.image.get_rect(center=self.rect.center)
+                pygame.draw.line(SURFACE, pygame.Color(150, 250, 100), center, first_enemy, 3)
+                self.enemy_closest.remove(first_enemy)
