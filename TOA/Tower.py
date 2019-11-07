@@ -28,20 +28,47 @@ class SpriteTower(pygame.sprite.Sprite):
                                                     self._image_tower1[self.level]))
         self.orig_image = self.image
         self.rect = self.image.get_rect(center=self.pos)
-        self.enemy_position = 0, 0
+        self.enemy_position_vec = 0, 0
         # self.turn_tower()
         # self.image = pygame.transform.scale(self.image, (scale_x, scale_y))
         self.in_range = False
-        self.enemy_pos = []
-        self.radius_to_enemy = []
+        self.enemy_position_list = []
+        self.radius_to_enemy_list = []
+        self.enemy_obj_list = []
+        # self.creep_count = 0
+        self.creep_count = 0
+        self.radius = None
+        self.center = None
 
-    def update(self, enemy_pos):
+    def update(self, enemy_pos: object = None) -> object:
         """
         Method update for tower sprites.
         :param enemy_pos:
         """
-        self.enemy_position = enemy_pos
+
+        enemy_position_obj = self.enemy_obj_list[self.creep_count].creep_center
+        self.enemy_position = enemy_position_obj
         self.turn_tower()
+
+    def add_enemy_to_list(self, enemy_obj):
+        """
+        Set enemy objects from enemy obj list.
+        Identify near the enemy object to Tower.
+        :rtype: object
+        """
+        self.enemy_obj_list = enemy_obj
+
+        minimal = min(self.radius_to_enemy_list)
+        index_radius = self.radius_to_enemy_list.index(minimal)
+        enemy_position_from_list = self.enemy_position_list[index_radius]
+        print(enemy_position_from_list)
+        count = 0
+        for x in self.enemy_obj_list:
+            detect = x.creep_center
+            count += 1
+            if enemy_position_from_list == detect:
+                self.creep_count = count
+        # self.creep_count = self.enemy_position_list.index(enemy_position_from_list)
 
     def draw(self):
         self.surface.blit(self.image, self.rect)
@@ -57,29 +84,31 @@ class SpriteTower(pygame.sprite.Sprite):
 
             self.surface.blit(surface, (self.x - self.range_center, self.y - self.range_center))
 
+    def calculate_radius_and_angle(self):
+        self.center = pygame.math.Vector2(self.rect.center)
+        self.enemy_position_vec = pygame.math.Vector2(self.enemy_position)
+
+        self.radius, self.angle = (self.enemy_position_vec - self.center).as_polar()
+        if self.angle >= 359:
+            self.angle = 0
+        if self.range:
+            self.radius_to_enemy_list.append(self.radius)
+            self.enemy_position_list.append(self.enemy_position)
+
     def turn_tower(self):
         """
         Method for turn the tower on angle
         :param enemy_position:
         """
-
-        center = pygame.math.Vector2(self.rect.center)
-        enemy_position = pygame.math.Vector2(self.enemy_position)
-
-        r, self.angle = (enemy_position - center).as_polar()
-        if self.angle >= 359:
-            self.angle = 0
-
-        # r - radius  damage
-        if r <= 100:
+        self.calculate_radius_and_angle()
+        if self.radius <= self.range:
             self.in_range = True
-            self.enemy_pos.append(self.enemy_position)
-            self.radius_to_enemy.append(r)
-            min_radius = min(self.radius_to_enemy)
-            radius_index = self.radius_to_enemy.index(min_radius)
-            en_pos = self.enemy_position[radius_index]
 
             self.image = pygame.transform.rotate(self.orig_image, -self.angle - 90)
             self.rect = self.image.get_rect(center=self.rect.center)
-            # pygame.draw.line(SURFACE, pygame.Color(150, 250, 100), center, en_pos, 3)
-
+            pygame.draw.line(SURFACE, pygame.Color(150, 250, 100), self.center, self.enemy_position_vec, 3)
+        if self.radius > self.range and self.in_range:
+            self.creep_count += 1
+            self.in_range = False
+            if self.creep_count >= len(self.enemy_obj_list):
+                self.creep_count = 0

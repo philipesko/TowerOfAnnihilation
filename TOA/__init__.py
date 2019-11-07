@@ -24,10 +24,10 @@ class MainLoop:
         self.scene_one_call = Scene1()
         self.creep = Creep()
         self.creep1 = Creep(start_y=-150)
-        self.creep2 = Creep(start_y=-200)
-        self.creep3 = Creep(start_y=-250)
-        self.creep4 = Creep(start_y=-300)
-        self.creep5 = Creep(start_y=-350)
+        self.creep2 = Creep(start_y=-250)
+        self.creep3 = Creep(start_y=-350)
+        self.creep4 = Creep(start_y=-450)
+        self.creep5 = Creep(start_y=-550)
         # Tracking mouse events
         self.click_event = CheckMousePos()
         self.tower_group = []
@@ -53,6 +53,7 @@ class MainLoop:
                 for enemy in self.creep_group:
                     enemy.move()
                 # self.target = self.creep_group[0].creep_center
+
 
                 if self.creep.damage:
                     self.health_left -= 1
@@ -85,14 +86,15 @@ class MainLoop:
                         GRID[cell_name]['is_active'] = False  # <- Здесь косяк: откуда-то берётся ячейка 8:13, хотя в гриде её нет. Игра крашится
                         self.tower_group.append(spite_tower)
                         print('Tower added to group')
+                        list(map(lambda x: x.add_enemy_to_list(self.creep_group), self.tower_group))
                     except:
                         print('Not complete added tower to group')
 
-
-
             for creepy in self.creep_group:
                 center = creepy.creep_center
-                list(map(lambda x: x.update(center), self.tower_group))
+
+            list(map(lambda x: x.update(center), self.tower_group))
+
             # list(map(lambda x: x.update(self.target), self.tower_group))
             # list(map(lambda x: x.update(self.creep1.creep_center), self.tower_group))
             list(map(lambda x: x.draw(), self.tower_group))
