@@ -32,8 +32,8 @@ class SpriteTower(pygame.sprite.Sprite):
         # self.turn_tower()
         # self.image = pygame.transform.scale(self.image, (scale_x, scale_y))
         self.in_range = False
-        self.enemy_closest = []
-        print(self.enemy_closest)
+        self.enemy_pos = []
+        self.radius_to_enemy = []
 
     def update(self, enemy_pos):
         """
@@ -73,15 +73,13 @@ class SpriteTower(pygame.sprite.Sprite):
         # r - radius  damage
         if r <= 100:
             self.in_range = True
-            self.enemy_closest.append(self.enemy_position)
+            self.enemy_pos.append(self.enemy_position)
+            self.radius_to_enemy.append(r)
+            min_radius = min(self.radius_to_enemy)
+            radius_index = self.radius_to_enemy.index(min_radius)
+            en_pos = self.enemy_position[radius_index]
 
-            self.enemy_closest.sort()
+            self.image = pygame.transform.rotate(self.orig_image, -self.angle - 90)
+            self.rect = self.image.get_rect(center=self.rect.center)
+            # pygame.draw.line(SURFACE, pygame.Color(150, 250, 100), center, en_pos, 3)
 
-            self.enemy_closest = self.enemy_closest[::]
-
-            if len(self.enemy_closest) > 0 and self.in_range:
-                first_enemy = self.enemy_closest[0]
-                self.image = pygame.transform.rotate(self.orig_image, -self.angle - 90)
-                self.rect = self.image.get_rect(center=self.rect.center)
-                pygame.draw.line(SURFACE, pygame.Color(150, 250, 100), center, first_enemy, 3)
-                self.enemy_closest.remove(first_enemy)
