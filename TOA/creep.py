@@ -3,7 +3,7 @@ import pygame
 from config import PATH_TO_RESOURCE, SURFACE, GRID
 
 
-class Creep(pygame.sprite.Sprite):
+class Creep():
 
     def __init__(self):
 
@@ -36,8 +36,6 @@ class Creep(pygame.sprite.Sprite):
         '''
         Moving enemy
         '''
-        # if self.shoot:
-        #     self.creep_health -= 0.5
         self.damage_player = False  # Resetting damage flag
         self.animate()  # Animating creep
 
@@ -61,15 +59,13 @@ class Creep(pygame.sprite.Sprite):
             if self.creep_x <= self.target_x:
                 self.move_to_the_next()
 
-        # print(self.creep_x, self.creep_y)
+        # Draw a creep
         self.surface.blit(self.blue_creep1_origin, (self.creep_x + 6, self.creep_y + 6))
 
         # If creep left screen reset coordinates, switch damage flag to True
         if self.creep_y >= self.route[9][1]:
             self.damage_done()
         self.creep_center = self.creep_x + 29, self.creep_y + 29
-
-        # return self.creep_center
 
     def move_to_the_next(self):
 
@@ -80,6 +76,7 @@ class Creep(pygame.sprite.Sprite):
         self.target_x, self.target_y = self.route[self.target_point]
 
     def animate(self):
+
         self.animation_count += 0.5  # Switching animation in turns
         if self.animation_count >= len(self.blue_creep1):
             self.animation_count = 0

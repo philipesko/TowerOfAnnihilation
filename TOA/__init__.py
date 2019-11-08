@@ -19,7 +19,6 @@ class MainLoop:
         pygame.mixer.quit()
         self._running = True
         self._switch_scene = False
-        self.timer = time.time()
         # Initial health
         self.health_left = 20
         self.wave = True
@@ -27,11 +26,13 @@ class MainLoop:
         self.CMW = CreateMainWindow()
         self.scene_one_call = Scene1()
         self.creep_types = [Creep()]  # Сюда поместить список всех крипов и каждую волну подменять тип
+        self.timer_creep = time.time()
+        self.timer_wave = time.time()
         # Tracking mouse events
         self.click_event = CheckMousePos()
         self.tower_group = []
-        self.creep_group = []
-        self.target = None
+        self.creep_pack = []
+        self.creep_group = [self.creep_pack]
 
     def run(self):
         """Main loop"""
@@ -43,26 +44,7 @@ class MainLoop:
                 self.scene_one_call.show_mouse_position_with_px(self.health_left)
 
                 # Release the craken!
-                if not self.creep_group:
-                    self.wave = True
-
-                if len(self.creep_group) == 10:
-                    self.wave = False
-
-                elif self.wave:
-                    if time.time() - self.timer >= 0.5 and len(self.creep_group) < 10:
-                        self.timer = time.time()
-                        self.creep_group.append(Creep())
-                for self.creep in self.creep_group:
-                    if self.creep.creep_health <= 0:
-                        self.creep_group.remove(self.creep)
-                    self.creep.move()
-                    if self.creep.damage_player:
-                        self.health_left -= 1
-                        self.creep_group.remove(self.creep)
-                        if self.health_left <= 0:
-                            print('        Bad luck, fist fuck...')
-                            self._running = False
+                self.release_the_craken()
 
             else:
                 self.CMW.create()
@@ -76,6 +58,8 @@ class MainLoop:
                 """Quit from game if player pushes button ESC"""
                 if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                     self._running = False
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
+                    self.wave = True
 
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and \
                         self.click_event.get_cell_coordinate(pygame.mouse.get_pos()):
@@ -102,6 +86,31 @@ class MainLoop:
 
         pygame.quit()
         quit()
+
+    def release_the_craken(self):
+
+        if not self.creep_group and time.time() - self.timer_creep >= 30:
+            self.wave = True
+
+        if len(self.creep_group) == 10:
+            self.wave = False
+            self.timer_wave = time.time()
+
+        elif self.wave:
+            if time.time() - self.timer_creep >= 0.5 and len(self.creep_group[0]) < 10:
+                self.timer_creep = time.time()
+                self.creep_pack.append(Creep())
+                self.creep_group.append(self.creep_pack)
+        for self.creep in self.creep_group[0]:
+            if self.creep.creep_health <= 0:
+                self.creep_group.remove(self.creep)
+            self.creep.move()
+            if self.creep.damage_player:
+                self.health_left -= 1
+                self.creep_group.remove(self.creep)
+                if self.health_left <= 0:
+                    print('        Bad luck, fist fuck...')
+                    self._running = False
 
 
 if __name__ == "__main__":
