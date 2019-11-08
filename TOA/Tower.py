@@ -106,7 +106,7 @@ class SpriteTower(pygame.sprite.Sprite):
 
             self.image = pygame.transform.rotate(self.orig_image, -self.angle - 90)
             self.rect = self.image.get_rect(center=self.rect.center)
-            pygame.draw.line(SURFACE, pygame.Color(150, 250, 100), self.center, self.enemy_position_vec, 3)
+            pygame.draw.aaline(SURFACE, pygame.Color(150, 250, 100), self.center, self.enemy_position_vec, 3)
         if self.radius > self.range and self.in_range:
             self.creep_count += 1
             self.in_range = False
