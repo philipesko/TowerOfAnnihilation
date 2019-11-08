@@ -90,17 +90,6 @@ class Creep():
         self.target_point = 1
         self.damage_player = True
 
-    def offset(self):
-        for i in self.route:
-            i[0] += 6
-            i[1] += 6
-        return self.route
-
-    # def draw(self):
-
-    #     self.surface.blit(self.blue_creep1_origin, (self.creep_x, self.creep_y))
-    #     self.move()
-
     def load_image(self, img):
         '''
         Load image from file path

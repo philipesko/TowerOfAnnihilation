@@ -29,7 +29,7 @@ class MainLoop:
         # self.creep1 = Creep((406, 0))
         self.creep_frequency = 2
         self.tower_group = []
-        self.creep_group = [Creep((406, 200)), Creep((406, 0))]
+        self.creep_group = [Creep((406, 200)), Creep((406, 100))]
         self.creep = None
 
     def run(self):
@@ -40,9 +40,8 @@ class MainLoop:
                 # Create a new level
                 self.scene_one_call.create()
                 self.scene_one_call.show_mouse_position_with_px(self.health_left)
+
                 # Release the craken!
-                # self.creep.update()
-                # self.creep1.update()
                 for self.creep in self.creep_group:
                     self.creep.update()
                     if self.creep.damage_player:
