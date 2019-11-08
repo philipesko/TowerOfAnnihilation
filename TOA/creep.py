@@ -30,13 +30,14 @@ class Creep(pygame.sprite.Sprite):
                             self.load_image('creep-1-blue/5.png'),
                             self.load_image('creep-1-blue/6.png')]
         self.blue_creep1_origin = self.blue_creep1[self.animation_count]
+        # self.hit = 0
 
     def move(self):
         '''
         Moving enemy
         '''
-        if self.shoot:
-            self.creep_health -= 0.5
+        # if self.shoot:
+        #     self.creep_health -= 0.5
         self.damage_player = False  # Resetting damage flag
         self.animate()  # Animating creep
 
@@ -66,7 +67,7 @@ class Creep(pygame.sprite.Sprite):
         # If creep left screen reset coordinates, switch damage flag to True
         if self.creep_y >= self.route[9][1]:
             self.damage_done()
-        self.creep_center = self.creep_x + 23, self.creep_y + 23
+        self.creep_center = self.creep_x + 29, self.creep_y + 29
 
         # return self.creep_center
 
