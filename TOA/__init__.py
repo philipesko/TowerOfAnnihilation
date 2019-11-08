@@ -1,4 +1,5 @@
 import pygame
+import random
 
 from main_window import CreateMainWindow
 from check_pos import CheckMousePos
@@ -23,15 +24,15 @@ class MainLoop:
         self.CMW = CreateMainWindow()
         self.scene_one_call = Scene1()
         self.creep = Creep()
-        self.creep1 = Creep(start_y=-150)
-        self.creep2 = Creep(start_y=-250)
-        self.creep3 = Creep(start_y=-350)
-        self.creep4 = Creep(start_y=-450)
-        self.creep5 = Creep(start_y=-550)
+        # self.creep1 = Creep(start_y=-150)
+        # self.creep2 = Creep(start_y=-250)
+        # self.creep3 = Creep(start_y=-350)
+        # self.creep4 = Creep(start_y=-450)
+        # self.creep5 = Creep(start_y=-550)
         # Tracking mouse events
         self.click_event = CheckMousePos()
         self.tower_group = []
-        self.creep_group = [self.creep, self.creep1, self.creep2, self.creep3, self.creep4, self.creep5]
+        self.creep_group = [Creep(), Creep()]
         self.target = None
 
     def run(self):
@@ -44,22 +45,16 @@ class MainLoop:
                 self.scene_one_call.show_mouse_position_with_px(self.health_left)
                 # Release the craken!
 
-
-                # self.creep_group.append(Creep(start_y=y-30))
-                # self.creep_group.append(Creep(start_y=y-60))
-                # self.creep_group.append(Creep(start_y=y-90))
-                # self.creep_group.append(Creep(start_y=y-120))
+                # self.creep_group.append[Creep()]
 
                 for enemy in self.creep_group:
                     enemy.move()
-                # self.target = self.creep_group[0].creep_center
 
-
-                if self.creep.damage:
-                    self.health_left -= 1
-                    if self.health_left <= 0:
-                        print('        Bad luck, fist fuck...')
-                        self._running = False
+                    if self.creep.damage:
+                        self.health_left -= 1
+                        if self.health_left <= 0:
+                            print('        Bad luck, fist fuck...')
+                            self._running = False
 
             else:
                 self.CMW.create()
@@ -83,7 +78,7 @@ class MainLoop:
                             self.click_event.get_cell_coordinate(pygame.mouse.get_pos()))
                         spite_tower = SpriteTower(x=coord[0], y=coord[1])
                         cell_name = self.click_event.get_cell_name(pygame.mouse.get_pos())
-                        GRID[cell_name]['is_active'] = False  # <- Здесь косяк: откуда-то берётся ячейка 8:13, хотя в гриде её нет. Игра крашится
+                        GRID[cell_name]['is_active'] = False
                         self.tower_group.append(spite_tower)
                         print('Tower added to group')
                         list(map(lambda x: x.add_enemy_to_list(self.creep_group), self.tower_group))
@@ -94,9 +89,6 @@ class MainLoop:
                 center = creepy.creep_center
 
             list(map(lambda x: x.update(center), self.tower_group))
-
-            # list(map(lambda x: x.update(self.target), self.tower_group))
-            # list(map(lambda x: x.update(self.creep1.creep_center), self.tower_group))
             list(map(lambda x: x.draw(), self.tower_group))
             pygame.display.flip()
             self.FPS.tick(30)
