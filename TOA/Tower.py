@@ -45,10 +45,10 @@ class SpriteTower(pygame.sprite.Sprite):
         Method update for tower sprites.
         :param enemy_pos:
         """
-
-        enemy_position_obj = self.enemy_obj_list[self.creep_count].creep_center
-        self.enemy_position = enemy_position_obj
-        self.turn_tower()
+        if self.enemy_obj_list:
+            enemy_position_obj = self.enemy_obj_list[self.creep_count].creep_center
+            self.enemy_position = enemy_position_obj
+            self.turn_tower()
 
     def add_enemy_to_list(self, enemy_obj):
         """
@@ -107,8 +107,11 @@ class SpriteTower(pygame.sprite.Sprite):
             self.image = pygame.transform.rotate(self.orig_image, -self.angle - 90)
             self.rect = self.image.get_rect(center=self.rect.center)
             pygame.draw.aaline(SURFACE, pygame.Color(150, 250, 100), self.center, self.enemy_position_vec, 3)
+            # self.enemy_obj_list[self.creep_count].shoot = True
+
         if self.radius > self.range and self.in_range:
             self.creep_count += 1
             self.in_range = False
             if self.creep_count >= len(self.enemy_obj_list):
                 self.creep_count = 0
+            # self.enemy_obj_list[self.creep_count].shoot = False

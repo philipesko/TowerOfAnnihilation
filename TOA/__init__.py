@@ -22,9 +22,11 @@ class MainLoop:
         self.timer = time.time()
         # Initial health
         self.health_left = 20
+        self.wave = True
         self.FPS = pygame.time.Clock()
         self.CMW = CreateMainWindow()
         self.scene_one_call = Scene1()
+        self.creep_types = [Creep()]  # Сюда поместить список всех крипов и каждую волну подменять тип
         # Tracking mouse events
         self.click_event = CheckMousePos()
         self.tower_group = []
@@ -41,11 +43,19 @@ class MainLoop:
                 self.scene_one_call.show_mouse_position_with_px(self.health_left)
 
                 # Release the craken!
-                if time.time() - self.timer >= random.randrange(1, 6)/3 and len(self.creep_group) < 10:
-                    self.timer = time.time()
-                    self.creep_group.append(Creep())
+                if not self.creep_group:
+                    self.wave = True
 
+                if len(self.creep_group) == 10:
+                    self.wave = False
+
+                elif self.wave:
+                    if time.time() - self.timer >= 0.5 and len(self.creep_group) < 10:
+                        self.timer = time.time()
+                        self.creep_group.append(Creep())
                 for self.creep in self.creep_group:
+                    if self.creep.creep_health <= 0:
+                        self.creep_group.remove(self.creep)
                     self.creep.move()
                     if self.creep.damage_player:
                         self.health_left -= 1
@@ -77,6 +87,7 @@ class MainLoop:
                         GRID[cell_name]['is_active'] = False
                         self.tower_group.append(spite_tower)
                         print('Tower added to group')
+                        # if not self.creep_group:
                         list(map(lambda x: x.add_enemy_to_list(self.creep_group), self.tower_group))
                     except:
                         print('Not complete added tower to group')

@@ -8,16 +8,17 @@ class Creep(pygame.sprite.Sprite):
     def __init__(self):
 
         self.surface = SURFACE
-        self.route = [[GRID['7:0']['coord'][0], -106], GRID['7:4']['coord'],
+        self.route = [[GRID['7:0']['coord'][0], -150], GRID['7:4']['coord'],
                       GRID['12:4']['coord'], GRID['12:8']['coord'],
                       GRID['10:8']['coord'], GRID['10:9']['coord'],
                       GRID['3:9']['coord'], GRID['3:11']['coord'],
-                      GRID['10:11']['coord'], [GRID['10:11']['coord'][0], 802]]
+                      GRID['10:11']['coord'], [GRID['10:11']['coord'][0], 799]]
         self.target_point = 1
         self.creep_x = self.route[0][0]
         self.creep_y = self.route[0][1]
         self.damage_player = False
         self.creep_center = self.creep_x + 23, self.creep_y + 23
+        self.shoot = False
         self.creep_health = 30
         self.speed = 3
         self.animation_count = 0
@@ -34,6 +35,8 @@ class Creep(pygame.sprite.Sprite):
         '''
         Moving enemy
         '''
+        if self.shoot:
+            self.creep_health -= 0.5
         self.damage_player = False  # Resetting damage flag
         self.animate()  # Animating creep
 
@@ -83,8 +86,6 @@ class Creep(pygame.sprite.Sprite):
 
     def damage_done(self):
 
-        # self.creep_x = self.route[0][0]
-        # self.creep_y = self.route[0][1]
         self.target_point = 1
         self.damage_player = True
 
