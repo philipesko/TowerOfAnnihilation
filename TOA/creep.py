@@ -29,18 +29,6 @@ class Creep(pygame.sprite.Sprite):
                             self.load_image('creep-1-blue/5.png'),
                             self.load_image('creep-1-blue/6.png')]
         self.blue_creep1_origin = self.blue_creep1[self.animation_count]
-        # Creep level 2
-        self.blue_creep2 = [self.load_image('creep-2-blue/1.png'),
-                            self.load_image('creep-2-blue/2.png'),
-                            self.load_image('creep-2-blue/3.png'),
-                            self.load_image('creep-2-blue/4.png')]
-        self.blue_creep2_origin = self.blue_creep2[self.animation_count]
-        # Creep level 3
-        self.blue_creep3 = [self.load_image('creep-3-blue/1.png'),
-                            self.load_image('creep-3-blue/2.png'),
-                            self.load_image('creep-3-blue/3.png'),
-                            self.load_image('creep-3-blue/4.png')]
-        self.blue_creep3_origin = self.blue_creep3[self.animation_count]
 
     def move(self):
         '''
@@ -95,8 +83,8 @@ class Creep(pygame.sprite.Sprite):
 
     def damage_done(self):
 
-        self.creep_x = self.route[0][0]
-        self.creep_y = self.route[0][1]
+        # self.creep_x = self.route[0][0]
+        # self.creep_y = self.route[0][1]
         self.target_point = 1
         self.damage_player = True
 

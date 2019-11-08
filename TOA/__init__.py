@@ -39,9 +39,9 @@ class MainLoop:
                 # Create a new level
                 self.scene_one_call.create()
                 self.scene_one_call.show_mouse_position_with_px(self.health_left)
-                # Release the craken!
 
-                if time.time() - self.timer >= random.randrange(1, 6)/3 and len(self.creep_group) <= 10:
+                # Release the craken!
+                if time.time() - self.timer >= random.randrange(1, 6)/3 and len(self.creep_group) < 10:
                     self.timer = time.time()
                     self.creep_group.append(Creep())
 
@@ -49,6 +49,7 @@ class MainLoop:
                     self.creep.move()
                     if self.creep.damage_player:
                         self.health_left -= 1
+                        self.creep_group.remove(self.creep)
                         if self.health_left <= 0:
                             print('        Bad luck, fist fuck...')
                             self._running = False
@@ -65,8 +66,6 @@ class MainLoop:
                 """Quit from game if player pushes button ESC"""
                 if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                     self._running = False
-                # if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                # self.click_event.mouse_coordinates(pygame.mouse.get_pos())
 
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and \
                         self.click_event.get_cell_coordinate(pygame.mouse.get_pos()):
