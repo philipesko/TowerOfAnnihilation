@@ -5,22 +5,22 @@ from config import PATH_TO_RESOURCE, SURFACE, GRID
 
 class Creep():
 
-    def __init__(self, coord):
+    def __init__(self):
 
         self.surface = SURFACE
-        self.route = [[GRID['7:0']['coord'][0], 50], GRID['7:4']['coord'],
+        self.route = [[GRID['7:0']['coord'][0], -150], GRID['7:4']['coord'],
                       GRID['12:4']['coord'], GRID['12:8']['coord'],
                       GRID['10:8']['coord'], GRID['10:9']['coord'],
                       GRID['3:9']['coord'], GRID['3:11']['coord'],
-                      GRID['10:11']['coord'], [GRID['10:11']['coord'][0], 802]]
+                      GRID['10:11']['coord'], [GRID['10:11']['coord'][0], 799]]
         self.target_point = 1
-        # self.offset()  # Need to handle grid change in future
-        # self.creep_x = self.route[0][0]
-        # self.creep_y = self.route[0][1]
-        self.creep_x, self.creep_y = coord
-        self.creep_center = self.creep_x + 23, self.creep_y + 23
+        self.creep_x = self.route[0][0]
+        self.creep_y = self.route[0][1]
         self.damage_player = False
+        self.creep_center = self.creep_x + 23, self.creep_y + 23
+        self.shoot = False
         self.creep_health = 30
+        self.max_health = 30
         self.speed = 3
         self.animation_count = 0
         # Creep level 1
@@ -31,8 +31,9 @@ class Creep():
                             self.load_image('creep-1-blue/5.png'),
                             self.load_image('creep-1-blue/6.png')]
         self.blue_creep1_origin = self.blue_creep1[self.animation_count]
+        # self.hit = 0
 
-    def update(self):
+    def move(self):
         '''
         Moving enemy
         '''
@@ -59,15 +60,14 @@ class Creep():
             if self.creep_x <= self.target_x:
                 self.move_to_the_next()
 
-        # print(self.creep_x, self.creep_y)
+        # Draw a creep
         self.surface.blit(self.blue_creep1_origin, (self.creep_x + 6, self.creep_y + 6))
+        self.draw_health_bar()
 
-        # If creep left screen reset coordinates, switch damage flag to True
+        # If creep left screen, switch damage flag to True
         if self.creep_y >= self.route[9][1]:
             self.damage_done()
-        self.creep_center = self.creep_x + 23, self.creep_y + 23
-
-        return self.creep_center
+        self.creep_center = self.creep_x + 29, self.creep_y + 29
 
     def move_to_the_next(self):
 
@@ -78,6 +78,7 @@ class Creep():
         self.target_x, self.target_y = self.route[self.target_point]
 
     def animate(self):
+
         self.animation_count += 0.5  # Switching animation in turns
         if self.animation_count >= len(self.blue_creep1):
             self.animation_count = 0
@@ -85,10 +86,17 @@ class Creep():
 
     def damage_done(self):
 
-        self.creep_x = self.route[0][0]
-        self.creep_y = self.route[0][1]
         self.target_point = 1
         self.damage_player = True
+
+    def draw_health_bar(self):
+
+        length = self.blue_creep1_origin.get_rect()[2] - 6
+        move_by = length / self.max_health
+        health_bar = round(move_by * self.creep_health)
+
+        pygame.draw.rect(self.surface, (255,0,0), (self.creep_x + 7, self.creep_y, length, 3), 0)
+        pygame.draw.rect(self.surface, (0, 255, 0), (self.creep_x + 7, self.creep_y, health_bar, 3), 0)
 
     def load_image(self, img):
         '''

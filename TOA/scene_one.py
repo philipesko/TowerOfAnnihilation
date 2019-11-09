@@ -40,13 +40,13 @@ class Scene1(CreateMainWindow):
         # Set background for scene 1
         self.surface.blit(self.main_menu_background, (0, 0))
 
-    def show_mouse_position_with_px(self, health):
+    def show_mouse_position_with_px(self, input_text, position, font_size):
         """
         Drawing health status
         """
-        self.health_left = health
-        self.main_menu_greets_fonts = pygame.font.Font(os.path.join(PATH_TO_RESOURCE, 'font_forever.ttf'), 10)
-        self.positiontext(f'Health left: {self.health_left}', (10, 10))
+        # self.health_left = health
+        self.main_menu_greets_fonts = pygame.font.Font(os.path.join(PATH_TO_RESOURCE, 'font_forever.ttf'), font_size)
+        self.positiontext(input_text, position)
 
     def draw_danger(self, health_level):
         pass
