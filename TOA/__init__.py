@@ -30,7 +30,7 @@ class MainLoop:
     def run(self):
         """Main loop"""
         while self._running:
-            
+
             # Start a new level
             if self._switch_scene:
                 # Create a new level
@@ -41,7 +41,6 @@ class MainLoop:
 
             else:
                 self.CMW.create()
-
                 if not self.CMW.isrunning:
                     self._running = False
                 if self.CMW.switch_scene:
@@ -68,8 +67,6 @@ class MainLoop:
                     self.build_tower()
 
             # Fire!
-            for x in self.creep_group:
-                a = x.creep_center
             for creepy in self.creep_group:
                 center = creepy.creep_center
             list(map(lambda x: x.update(center), self.tower_group))
