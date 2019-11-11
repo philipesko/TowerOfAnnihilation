@@ -25,8 +25,8 @@ class Scene1(CreateMainWindow):
         self.active_cells_scene1 = ['6:3', '9:3', '12:3', '8:5', '11:5', '13:5', '9:6', '10:6', '11:6', '13:6',
                                     '11:7', '4:8', '6:8', '11:9', '2:10', '4:10', '7:10', '5:12', '8:12']
         self.grid_class.active_cells(self.active_cells_scene1)
-        # pygame.mixer.music.load(os.path.join(os.path.dirname(__file__), 'background_music.ogg'))
-        # pygame.mixer.music.play()
+        pygame.mixer.music.load(os.path.join(os.path.dirname(__file__), 'main_menu.wav'))
+        pygame.mixer.music.play()
 
         self.main_menu_greets = None
         self.main_menu_greets_position = None

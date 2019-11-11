@@ -7,8 +7,8 @@ from config import PATH_TO_RESOURCE, SURFACE
 class SpriteTower(pygame.sprite.Sprite):
     """Abstract Class for Towers """
 
-    def __init__(self, level_tower=0, x=500, y=500):
-        super(pygame.sprite.Sprite, self).__init__()
+    def __init__(self, level_tower=0, x=0, y=0):
+
         self._path_to_sprite = os.path.join(PATH_TO_RESOURCE, 'tower-defense-turrets')
         self._image_tower1 = ['turret-1-1.png', 'turret-1-2.png', 'turret-1-3.png']
         self.angle = 0
@@ -17,7 +17,7 @@ class SpriteTower(pygame.sprite.Sprite):
         self.level = level_tower
         self.selected = False  # need change this value for show radius damage
         # temporary values:
-        self.range = 100
+        self.range = 150
         self.range_center = self.range
         self.x = x + 28
         self.y = y + 28
@@ -56,18 +56,6 @@ class SpriteTower(pygame.sprite.Sprite):
         """
         self.enemy_obj_list = enemy_obj
 
-        # minimal = min(self.radius_to_enemy_list)
-        # index_radius = self.radius_to_enemy_list.index(minimal)
-        # enemy_position_from_list = self.enemy_position_list[index_radius]
-        # print(enemy_position_from_list)
-        # count = 0
-        # for x in self.enemy_obj_list:
-        #     detect = x.creep_center
-        #     count += 1
-        #     if enemy_position_from_list == detect:
-        #         self.creep_count = count
-        # self.creep_count = self.enemy_position_list.index(enemy_position_from_list)
-
     def draw(self):
         self.surface.blit(self.image, self.rect)
         self.draw_radius()
@@ -105,13 +93,10 @@ class SpriteTower(pygame.sprite.Sprite):
             self.image = pygame.transform.rotate(self.orig_image, -self.angle - 90)
             self.rect = self.image.get_rect(center=self.rect.center)
             pygame.draw.aaline(SURFACE, pygame.Color(150, 250, 100), self.center, self.enemy_position_vec, 3)
-            # self.enemy_obj_list[self.creep_count].shoot = True
             self.enemy_obj_list[self.creep_count].creep_health -= 0.5
-
 
         if self.radius > self.range and self.in_range:
             self.creep_count += 1
             self.in_range = False
             if self.creep_count >= len(self.enemy_obj_list):
                 self.creep_count = 0
-            # self.enemy_obj_list[self.creep_count].shoot = False

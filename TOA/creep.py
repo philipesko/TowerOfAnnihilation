@@ -19,9 +19,10 @@ class Creep():
         self.damage_player = False
         self.creep_center = self.creep_x + 23, self.creep_y + 23
         self.shoot = False
-        self.creep_health = 30
-        self.max_health = 30
-        self.speed = 3
+        self.creep_health = 0
+        self.max_health = 0
+        self.reward = 0
+        self.speed = 0
         self.animation_count = 0
         # Creep level 1
         self.blue_creep1 = [self.load_image('creep-1-blue/1.png'),
