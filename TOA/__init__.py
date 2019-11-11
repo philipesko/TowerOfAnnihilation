@@ -25,7 +25,6 @@ class MainLoop:
         self.CMW = CreateMainWindow()
         self.scene_one_call = Scene1()
         self.timer_creep = time.time()
-        # Tracking mouse events
         self.mouse_position = CheckMousePos()
         self.tower_group = []
         self.creep_group = []
@@ -118,11 +117,10 @@ class MainLoop:
             else:
                 self.pack_size = 10  # Standard wave size
             # Generating wave out of 10
-            # for a in range(self.pack_size):
-                if time.time() - self.timer_creep >= 0.7 and len(self.creep_group) < self.pack_size:
-                    self.timer_creep = time.time()
-                    print(f'in wave {self.creep_wave_current}')
-                    self.creep_group.append(creep_types[self.creep_wave_current])
+            if time.time() - self.timer_creep >= 0.7 and len(self.creep_group) < self.pack_size:
+                self.timer_creep = time.time()
+                print(f'in wave {self.creep_wave_current}')
+                self.creep_group.append(creep_types[self.creep_wave_current])
 
         for self.creep in self.creep_group:
             # Check if dead, move if alive
