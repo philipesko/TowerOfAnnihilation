@@ -25,13 +25,13 @@ class Creep():
         self.speed = 0
         self.animation_count = 0
         # Creep level 1
-        self.blue_creep1 = [self.load_image('creep-1-blue/1.png'),
-                            self.load_image('creep-1-blue/2.png'),
-                            self.load_image('creep-1-blue/3.png'),
-                            self.load_image('creep-1-blue/4.png'),
-                            self.load_image('creep-1-blue/5.png'),
-                            self.load_image('creep-1-blue/6.png')]
-        self.blue_creep1_origin = self.blue_creep1[self.animation_count]
+        self.creep_imgs = [self.load_image('creep-1-blue/1.png'),
+                           self.load_image('creep-1-blue/2.png'),
+                           self.load_image('creep-1-blue/3.png'),
+                           self.load_image('creep-1-blue/4.png'),
+                           self.load_image('creep-1-blue/5.png'),
+                           self.load_image('creep-1-blue/6.png')]
+        self.creep_img_original = self.creep_imgs[self.animation_count]
         # self.hit = 0
 
     def move(self):
@@ -45,7 +45,7 @@ class Creep():
         self.target_x, self.target_y = self.route[self.target_point]
         # Moving down
         if self.target_x - self.creep_x == 0:
-            self.blue_creep1_origin = pygame.transform.rotate(self.blue_creep1_origin, -90)
+            self.creep_img_original = pygame.transform.rotate(self.creep_img_original, -90)
             self.creep_y += self.speed
             if self.creep_y >= self.target_y:
                 self.move_to_the_next()
@@ -56,13 +56,13 @@ class Creep():
                 self.move_to_the_next()
         # Moving left
         if self.target_x - self.creep_x <= 0 and self.creep_y == self.target_y:
-            self.blue_creep1_origin = pygame.transform.rotate(self.blue_creep1_origin, 180)
+            self.creep_img_original = pygame.transform.rotate(self.creep_img_original, 180)
             self.creep_x -= self.speed
             if self.creep_x <= self.target_x:
                 self.move_to_the_next()
 
         # Draw a creep
-        self.surface.blit(self.blue_creep1_origin, (self.creep_x + 6, self.creep_y + 6))
+        self.surface.blit(self.creep_img_original, (self.creep_x + 6, self.creep_y + 6))
         self.draw_health_bar()
 
         # If creep left screen, switch damage flag to True
@@ -81,9 +81,9 @@ class Creep():
     def animate(self):
 
         self.animation_count += 0.5  # Switching animation in turns
-        if self.animation_count >= len(self.blue_creep1):
+        if self.animation_count >= len(self.creep_imgs):
             self.animation_count = 0
-        self.blue_creep1_origin = self.blue_creep1[int(self.animation_count)]
+        self.creep_img_original = self.creep_imgs[int(self.animation_count)]
 
     def damage_done(self):
 
@@ -92,7 +92,7 @@ class Creep():
 
     def draw_health_bar(self):
 
-        length = self.blue_creep1_origin.get_rect()[2] - 6
+        length = self.creep_img_original.get_rect()[2] - 6
         move_by = length / self.max_health
         health_bar = round(move_by * self.creep_health)
 

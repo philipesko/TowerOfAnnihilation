@@ -48,12 +48,13 @@ class MainLoop:
 
             for event in pygame.event.get():
                 """Quit from game if player pushes button ESC"""
+                # Change cursor type with interactive object
                 if self._switch_scene:
                     self.mouse_position.cursor_type(pygame.mouse.get_pos())
                 if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                     self._running = False
                 # Force next wave
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_1 and not self.creep_group:
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_1 and not self.creep_group and self._switch_scene:
                     self.scene_one_call.show_mouse_position_with_px(f'next wave', (500, 20), 20)
                     if self.creep_wave_current < 9:
                         self.creep_wave_current += 1
