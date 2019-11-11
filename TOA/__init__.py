@@ -96,7 +96,6 @@ class MainLoop:
 
         if self.creep_wave_current < 9:
             self.creep_wave_current += 1
-            self.wave_trigger = 11
             print(f'step{self.creep_wave_current}')
         else:
             self.creep_wave_current = 0
@@ -137,7 +136,6 @@ class MainLoop:
                        Creep_blue_3(), Creep_green_3(), Creep_red_3(),
                        Boss()]
 
-        # for a in range(0, self.pack_size):
         if time.time() - self.timer_creep >= 0.7:
             self.wave_trigger += 1
             self.timer_creep = time.time()
