@@ -18,6 +18,7 @@ class MainLoop:
         self._switch_scene = False
         self.player_health_left = 20  # Initial health
         self.wave = True  # Activate first wave
+        self.wave_trigger = 0
         self.creep_wave_current = 0  # Current enemy type
         self.FPS = pygame.time.Clock()
         self.CMW = CreateMainWindow()
@@ -54,13 +55,10 @@ class MainLoop:
                 if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                     self._running = False
                 # Force next wave
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_1 and not self.creep_group and self._switch_scene:
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_1 and not self.wave_trigger and self._switch_scene:
                     self.scene_one_call.show_mouse_position_with_px(f'next wave', (500, 20), 20)
-                    if self.creep_wave_current < 9:
-                        self.creep_wave_current += 1
-                    else:
-                        self.creep_wave_current = 0
-                    self.wave = True
+                    self.check_conditions()
+                    self.generate_new_wave()
                 # Build new tower
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and \
                         self.mouse_position.mouse_coordinates(pygame.mouse.get_pos(), False) \
@@ -94,36 +92,28 @@ class MainLoop:
         print('added')
         list(map(lambda x: x.add_enemy_to_list(self.creep_group), self.tower_group))
 
+    def check_conditions(self):
+
+        if self.creep_wave_current < 9:
+            self.creep_wave_current += 1
+            self.wave_trigger = 11
+            print(f'step{self.creep_wave_current}')
+        else:
+            self.creep_wave_current = 0
+        self.wave = True
+
     def release_the_craken(self):
 
-        creep_types = [Creep_blue_1(), Creep_green_1(), Creep_red_1(),
-                       Creep_blue_2(), Creep_green_2(), Creep_red_2(),
-                       Creep_blue_3(), Creep_green_3(), Creep_red_3(),
-                       Boss()]
         # Launching new wave
         if not self.creep_group and time.time() - self.timer_creep >= 20:
-
-            if self.creep_wave_current < 9:
-                self.creep_wave_current += 1
-                print(f'step{self.creep_wave_current}')
-            else:
-                self.creep_wave_current = 0
-            self.wave = True
-        # If pack is full - stop
-        if len(self.creep_group) == 10:
-            self.wave = False
-            self.timer_wave = time.time()
-
+            self.check_conditions()
         if self.wave:
             if self.creep_wave_current == 9:
                 self.pack_size = 1  # Boss wave size
             else:
                 self.pack_size = 10  # Standard wave size
             # Generating wave out of 10
-            if time.time() - self.timer_creep >= 0.7 and len(self.creep_group) < self.pack_size:
-                self.timer_creep = time.time()
-                print(f'in wave {self.creep_wave_current}')
-                self.creep_group.append(creep_types[self.creep_wave_current])
+            self.generate_new_wave()
 
         for self.creep in self.creep_group:
             # Check if dead, move if alive
@@ -139,6 +129,24 @@ class MainLoop:
                 if self.player_health_left <= 0:
                     print('        Bad luck, fist fuck...')
                     self._running = False
+
+    def generate_new_wave(self):
+
+        creep_types = [Creep_blue_1(), Creep_green_1(), Creep_red_1(),
+                       Creep_blue_2(), Creep_green_2(), Creep_red_2(),
+                       Creep_blue_3(), Creep_green_3(), Creep_red_3(),
+                       Boss()]
+
+        # for a in range(0, self.pack_size):
+        if time.time() - self.timer_creep >= 0.7:
+            self.wave_trigger += 1
+            self.timer_creep = time.time()
+            print(f'in wave {self.creep_wave_current}')
+            self.creep_group.append(creep_types[self.creep_wave_current])
+        if self.wave_trigger == self.pack_size:
+            self.wave_trigger = 0
+            self.wave = False
+            self.timer_wave = time.time()
 
 
 if __name__ == "__main__":
