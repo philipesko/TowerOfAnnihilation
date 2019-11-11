@@ -14,8 +14,6 @@ class MainLoop:
     def __init__(self):
 
         pygame.init()
-        # Known bug - high CPU usage
-        # pygame.mixer.quit()
         self._running = True
         self._switch_scene = False
         self.player_health_left = 20  # Initial health
@@ -32,12 +30,12 @@ class MainLoop:
     def run(self):
         """Main loop"""
         while self._running:
+            
             # Start a new level
             if self._switch_scene:
                 # Create a new level
                 self.scene_one_call.create()
-                self.scene_one_call.show_mouse_position_with_px(f'Health left: {self.player_health_left}', (10, 10), 10)
-                self.scene_one_call.show_mouse_position_with_px(f'Current wave: {self.creep_wave_current + 1}/10', (10, 30), 10)
+                self.draw_text()
                 # Release the craken!
                 self.release_the_craken()
 
@@ -51,6 +49,8 @@ class MainLoop:
 
             for event in pygame.event.get():
                 """Quit from game if player pushes button ESC"""
+                if self._switch_scene:
+                    self.mouse_position.cursor_type(pygame.mouse.get_pos())
                 if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                     self._running = False
                 # Force next wave
@@ -63,7 +63,7 @@ class MainLoop:
                     self.wave = True
                 # Build new tower
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and \
-                        self.mouse_position.get_cell_coordinate(pygame.mouse.get_pos()) \
+                        self.mouse_position.mouse_coordinates(pygame.mouse.get_pos(), False) \
                         and self._switch_scene:
                     self.build_tower()
 
@@ -81,14 +81,19 @@ class MainLoop:
         pygame.quit()
         quit()
 
+    def draw_text(self):
+
+        self.scene_one_call.show_mouse_position_with_px(f'Health left: {self.player_health_left}', (10, 10), 10)
+        self.scene_one_call.show_mouse_position_with_px(f'Current wave: {self.creep_wave_current + 1}/10', (10, 30), 10)
+
     def build_tower(self):
 
-        coord = self.mouse_position.get_cell_coordinate(
-            self.mouse_position.get_cell_coordinate(pygame.mouse.get_pos()))
+        coord = self.mouse_position.mouse_coordinates(pygame.mouse.get_pos(), False)
         spite_tower = SpriteTower(x=coord[0], y=coord[1])
-        cell_name = self.mouse_position.get_cell_name(pygame.mouse.get_pos())
-        GRID[cell_name]['is_active'] = False
+        cell_name = self.mouse_position.mouse_coordinates(pygame.mouse.get_pos(), True)
+        GRID[cell_name]['towerlevel'] = 1
         self.tower_group.append(spite_tower)
+        print('added')
         list(map(lambda x: x.add_enemy_to_list(self.creep_group), self.tower_group))
 
     def release_the_craken(self):
