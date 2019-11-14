@@ -44,9 +44,9 @@ class SpriteTower(pygame.sprite.Sprite):
         :param enemy_pos:
         """
         if self.enemy_obj_list and self.creep_count < len(self.enemy_obj_list):
-            enemy_position_obj = self.enemy_obj_list[self.creep_count].creep_center
-            self.enemy_position = enemy_position_obj
             self.turn_tower()
+        else:
+            self.creep_count = 0
 
     def add_enemy_to_list(self, enemy_obj):
         """
@@ -72,14 +72,18 @@ class SpriteTower(pygame.sprite.Sprite):
 
     def calculate_radius_and_angle(self):
         self.center = pygame.math.Vector2(self.rect.center)
-        self.enemy_position_vec = pygame.math.Vector2(self.enemy_position)
+        self.enemy_position_vec = pygame.math.Vector2(self.enemy_obj_list[self.creep_count].creep_center)
 
         self.radius, self.angle = (self.enemy_position_vec - self.center).as_polar()
         if self.angle >= 359:
             self.angle = 0
+
         if self.range:
-            self.radius_to_enemy_list.append(self.radius)
-            self.enemy_position_list.append(self.enemy_position)
+            # self.radius_to_enemy_list.append(self.radius)
+            self.enemy_position_list.append(self.enemy_obj_list[self.creep_count].creep_center)
+        else:
+            self.enemy_position_list.remove(self.enemy_obj_list[self.creep_count].creep_center)
+            # self.radius_to_enemy_list.remove(self.radius)
 
     def turn_tower(self):
         """

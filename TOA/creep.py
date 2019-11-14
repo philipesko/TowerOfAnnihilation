@@ -3,7 +3,7 @@ import pygame
 from config import PATH_TO_RESOURCE, SURFACE, GRID
 
 
-class Creep():
+class Creep:
 
     def __init__(self):
 

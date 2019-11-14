@@ -1,12 +1,14 @@
 import pygame
 import time
 
+
 from main_window import CreateMainWindow
 from check_pos import CheckMousePos
 from scene_one import Scene1
 from Tower import SpriteTower
 from creep_all import *
 from config import GRID
+
 
 
 class MainLoop:
@@ -40,6 +42,7 @@ class MainLoop:
                 # Release the craken!
                 self.release_the_craken()
 
+
             else:
                 self.CMW.create()
                 if not self.CMW.isrunning:
@@ -72,7 +75,7 @@ class MainLoop:
             list(map(lambda x: x.draw(), self.tower_group))
 
             pygame.display.flip()
-            self.FPS.tick(30)
+            self.FPS.tick(60)
 
         pygame.quit()
         quit()
