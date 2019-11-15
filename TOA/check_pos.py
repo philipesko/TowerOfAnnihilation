@@ -14,8 +14,10 @@ class CheckMousePos:
     def mouse_coordinates(self, coordinates, name_request):
         """
         This method show information from GRID to console
+        :param name_request: Fasle - return "cell name"/ True - return "cell coordinate" from GRID
+        :return:
         :param coordinates:
-        :return: coordinates
+        :return: cell name or coordinates
         """
         self.cell_compute(coordinates)
         # return cell name
